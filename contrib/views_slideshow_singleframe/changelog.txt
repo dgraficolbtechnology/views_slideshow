@@ -2,6 +2,10 @@
 
 Changelog for Views Slideshow: SingleFrame
 
+June 2009
+---------
+ * Revert to Branch 1 for development.
+
 April 2009
 ----------
  * Use Drupal.behaviors and settings for js (aaron).

@@ -10,3 +10,6 @@ The original alternate slideshow mode for Views Slideshow.
  *  The slide show will synchronize the two, so that the 'active' item
  *  will correspond to the single full/teaser item. The slide show can
  *  be set to move automatically and/or on mouse hover.
+
+DO NOT USE THIS VERSION!
+Either use an official release, or the DRUPAL-6--2 branch.

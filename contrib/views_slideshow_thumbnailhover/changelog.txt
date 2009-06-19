@@ -4,6 +4,7 @@ Changelog for Views Slideshow: ThumbnailHover
 
 June 2009
 ---------
+ * Revert to Branch 1 for development.
  * Changes to js (aaron).
 
 April 2009
