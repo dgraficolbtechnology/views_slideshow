@@ -171,6 +171,9 @@ Drupal.behaviors.viewsSlideshowThumbnailHover = function (context) {
 
 // Pause the slideshow 
 viewsSlideshowThumbnailHoverPause = function (settings) {
+  //make Resume translatable
+  var resume = Drupal.t('Resume');
+
   $(settings.targetId).cycle('pause');
   if (settings.controls > 0) {
     $('#views_slideshow_thumbnailhover_playpause_' + settings.id)
@@ -178,7 +181,7 @@ viewsSlideshowThumbnailHoverPause = function (settings) {
       .addClass('views_slideshow_play')
       .removeClass('views_slideshow_thumbnailhover_pause')
       .removeClass('views_slideshow_pause')
-      .text('Resume');
+      .text(resume);
   }
   settings.paused = true;
 }

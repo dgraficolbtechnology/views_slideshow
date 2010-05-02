@@ -166,6 +166,9 @@ Drupal.behaviors.viewsSlideshowSingleFrame = function (context) {
 
 // Pause the slideshow 
 viewsSlideshowSingleFramePause = function (settings) {
+  //make Resume translatable
+  var resume = Drupal.t('Resume');
+
   $(settings.targetId).cycle('pause');
   if (settings.controls > 0) {
     $('#views_slideshow_singleframe_playpause_' + settings.id)
@@ -173,7 +176,7 @@ viewsSlideshowSingleFramePause = function (settings) {
       .addClass('views_slideshow_play')
       .removeClass('views_slideshow_singleframe_pause')
       .removeClass('views_slideshow_pause')
-      .text('Resume');
+      .text(resume);
   }
   settings.paused = true;
 }
