@@ -215,6 +215,6 @@ function views_slideshow_singleframe_views_slideshow_options_form_validate(&$for
     form_error($form['views_slideshow_singleframe']['speed'], t('!setting must be numeric!',array('Speed')));
   }
   if (!is_numeric($form_state['values']['style_options']['views_slideshow_singleframe']['timeout'])) {
-    form_error($form['views_slideshow_singleframe']['speed'], t('!setting must be numeric!',array('timeout')));
+    form_error($form['views_slideshow_singleframe']['timeout'], t('!setting must be numeric!',array('Timeout')));
   }
 }
