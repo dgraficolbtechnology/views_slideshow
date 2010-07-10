@@ -285,12 +285,12 @@ function views_slideshow_singleframe_views_slideshow_options_form(&$form, &$form
 
 function views_slideshow_singleframe_views_slideshow_options_form_validate(&$form, &$form_state, &$view) {
   if (!is_numeric($form_state['values']['style_options']['views_slideshow_singleframe']['speed'])) {
-    form_error($form['views_slideshow_singleframe']['speed'], t('!setting must be numeric!',array('Speed')));
+    form_error($form['views_slideshow_singleframe']['speed'], t('Speed must be numeric!'));
   }
   if (!is_numeric($form_state['values']['style_options']['views_slideshow_singleframe']['timeout'])) {
-    form_error($form['views_slideshow_singleframe']['timeout'], t('!setting must be numeric!',array('Timeout')));
+    form_error($form['views_slideshow_singleframe']['timeout'], t('Timeout must be numeric!'));
   }
   if (!is_numeric($form_state['values']['style_options']['views_slideshow_singleframe']['remember_slide_days'])) {
-    form_error($form['views_slideshow_singleframe']['remember_slide_days'], t('!setting must be numeric!',array('Slide days')));
+    form_error($form['views_slideshow_singleframe']['remember_slide_days'], t('Slide days must be numeric!'));
   }
 }
