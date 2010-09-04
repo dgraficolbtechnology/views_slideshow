@@ -234,6 +234,9 @@ viewsSlideshowThumbnailHoverPause = function (settings) {
 
 // Resume the slideshow
 viewsSlideshowThumbnailHoverResume = function (settings) {
+  // Make Pause translatable
+  var pause = Drupal.t('Pause');
+  
   $(settings.targetId).cycle('resume');
   if (settings.controls > 0) {
     $('#views_slideshow_thumbnailhover_playpause_' + settings.vss_id)
@@ -241,7 +244,7 @@ viewsSlideshowThumbnailHoverResume = function (settings) {
       .addClass('views_slideshow_pause')
       .removeClass('views_slideshow_thumbnailhover_play')
       .removeClass('views_slideshow_play')
-      .text('Pause');
+      .text(pause);
   }
   settings.paused = false;
 }
