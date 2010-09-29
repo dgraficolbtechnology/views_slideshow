@@ -19,16 +19,18 @@ function template_preprocess_views_slideshow_singleframe(&$vars) {
   // Cast the strings into int or bool as necessary.
   $new_settings = array();
   foreach ($settings as $key => $value) {
-    $value = trim($value);
+    if (is_string($value)) {
+      $value = trim($value);
 
-    if (is_numeric($value)) {
-      $value = (int)$value;
-    }
-    else if (strtolower($value) == 'true') {
-      $value = true;
-    }
-    else if (strtolower($value) == 'false') {
-      $value = false;
+      if (is_numeric($value)) {
+        $value = (int)$value;
+      }
+      elseif (strtolower($value) == 'true') {
+        $value = TRUE;
+      }
+      elseif (strtolower($value) == 'false') {
+        $value = FALSE;
+      }
     }
     
     $new_settings[$key] = $value;
