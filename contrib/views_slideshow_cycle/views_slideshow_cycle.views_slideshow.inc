@@ -369,6 +369,7 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
       '#type' => 'select',
       '#title' => t('Advanced Options'),
       '#options' => $cycle_options,
+      '#process' => array('views_slideshow_cycle_form_options_js'),
     );
     
     $form['views_slideshow_cycle']['advanced_options_entry'] = array(
@@ -385,87 +386,12 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
     $form['views_slideshow_cycle']['advanced_options_table'] = array(
       '#value' => '<table style="width: 400px; margin-left: 10px;" id="edit-style-options-views-slideshow-cycle-advanced-options-table"></table>'
     );
-    
-    $form['views_slideshow_cycle']['advanced_options_js'] = array(
-      '#value' => "
-      <script type='text/javascript'>
-        Drupal.behaviors.viewsSlideshowCycleOptions = function (context) {
-          $('#edit-style-options-views-slideshow-cycle-advanced-options-wrapper').hide();
-          
-          $('#edit-style-options-views-slideshow-cycle-advanced-options-entry-wrapper').after(
-            '<div style=\"margin-left: 10px; padding: 10px 0;\">' + 
-              '<a id=\"edit-style-options-views-slideshow-cycle-advanced-options-update-link\" href=\"#\">' + Drupal.t('Update Advanced Option') + '</a>' +
-            '</div>'
-          );
-          
-          $('#edit-style-options-views-slideshow-cycle-advanced-options-table').append('<tr><th colspan=\"2\">' + Drupal.t('Applied Options') + '</th><tr>')
-          
-          var initialValue = $('#edit-style-options-views-slideshow-cycle-advanced-options').val();
-          var advancedOptions = JSON.parse(initialValue);
-          for (var option in advancedOptions) {
-            viewsSlideshowCycleAdvancedOptionsAddRow(option);
-          }
-          
-          // Add the remove event to the adanced items.
-          viewsSlideshowCycleAdvancedOptionsRemoveEvent();
-          
-          $('#edit-style-options-views-slideshow-cycle-advanced-options-choices').change(function() {
-            var selectedValue = $('select#edit-style-options-views-slideshow-cycle-advanced-options-choices option:selected').val();
-            if (typeof advancedOptions[selectedValue] !== 'undefined') {
-              $('#edit-style-options-views-slideshow-cycle-advanced-options-entry').val(advancedOptions[selectedValue]);
-            }
-            else {
-              $('#edit-style-options-views-slideshow-cycle-advanced-options-entry').val('');
-            }
-          });
-    
-          $('#edit-style-options-views-slideshow-cycle-advanced-options-update-link').click(function() {
-            var option = $('#edit-style-options-views-slideshow-cycle-advanced-options-choices').val();
-            if (option !== 0) {
-              var value = $('#edit-style-options-views-slideshow-cycle-advanced-options-entry').val();
-            
-              if (typeof advancedOptions[option] == 'undefined') {
-                viewsSlideshowCycleAdvancedOptionsAddRow(option);
-                viewsSlideshowCycleAdvancedOptionsRemoveEvent()
-              }
-              advancedOptions[option] = value;
-              viewsSlideshowCycleAdvancedOptionsSave();
-            }
-            
-            return false;
-          });
-          
-          function viewsSlideshowCycleAdvancedOptionsAddRow(option) {
-            $('#edit-style-options-views-slideshow-cycle-advanced-options-table').append(
-              '<tr id=\"views-slideshow-cycle-advanced-options-table-row-' + option + '\">' +
-                '<td>' + option + '</td>' +
-                '<td style=\"width: 20px;\">' +
-                  '<a style=\"margin-top: 6px\" title=\"Remove ' + option + '\" alt=\"Remove ' + option + '\" class=\"views-hidden views-button-remove views-slideshow-cycle-advanced-options-table-remove\" id=\"views-slideshow-cycle-advanced-options-table-remove-' + option + '\" href=\"#\"><span>Remove</span></a>' +
-                '</td>' +
-              '</tr>'
-            );
-          }
-          
-          function viewsSlideshowCycleAdvancedOptionsRemoveEvent() {
-            $('.views-slideshow-cycle-advanced-options-table-remove').unbind().click(function() {
-              var itemID = $(this).attr('id');
-              var uniqueID = itemID.replace('views-slideshow-cycle-advanced-options-table-remove-', '');
-              delete advancedOptions[uniqueID];
-              $('#views-slideshow-cycle-advanced-options-table-row-' + uniqueID).remove();
-              viewsSlideshowCycleAdvancedOptionsSave();
-              return false;
-            });
-          }
-          
-          function viewsSlideshowCycleAdvancedOptionsSave() {
-            var advancedOptionsString = JSON.stringify(advancedOptions);
-            $('#edit-style-options-views-slideshow-cycle-advanced-options').val(advancedOptionsString);
-          }
-        }
-      </script>
-      "
-    );
   }
+}
+
+function views_slideshow_cycle_form_options_js($element, &$form_state, &$form) {
+  drupal_add_js(drupal_get_path('module', 'views_slideshow_cycle') . '/js/formoptions.js');
+  return $element;
 }
 
 function views_slideshow_cycle_views_slideshow_options_form_validate(&$form, &$form_state, &$view) {

@@ -53,12 +53,12 @@ function template_preprocess_views_slideshow(&$vars) {
   
   foreach($widgets as $widget_id => $widget_name) {
     // Put our widgets in the right location.
-    if ($options['widgets']['top'][$widget_id . '_enable']) {
+    if ($options['widgets']['top'][$widget_id]['enable']) {
       $widget_weight = ($options['widgets']['top'][$widget_id]['weight'] > count($widgets)) ? count($widgets) : $options['widgets']['top'][$widget_id]['weight'];
       $weight['top'][$widget_weight][] = $widget_id;
     }
     
-    if ($options['widgets']['bottom'][$widget_id . '_enable']) {
+    if ($options['widgets']['bottom'][$widget_id]['enable']) {
       $widget_weight = ($options['widgets']['bottom'][$widget_id]['weight'] > count($widgets)) ? count($widgets) : $options['widgets']['bottom'][$widget_id]['weight'];
       $weight['bottom'][$widget_weight][] = $widget_id;
     }
@@ -129,7 +129,7 @@ function template_preprocess_views_slideshow_pager_fields_render(&$vars) {
   drupal_add_js($js_vars, 'setting');
   
   // Add our class to the wrapper.
-  $vars['attributes']['class'] .= ' views_slideshow_pager_field';
+  $vars['attributes']['class'] = (isset($vars['attributes']['class'])) ? $vars['attributes']['class'] . ' views_slideshow_pager_field' : 'views_slideshow_pager_field';
   
   // Render all the fields.
   $vars['rendered_field_items'] = '';

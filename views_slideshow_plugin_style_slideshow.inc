@@ -112,7 +112,7 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style_list {
     /**
      * Widgets
      */
-    $form['widgets'] = array(
+    $form['widgets_header'] = array(
       '#value' => '<h2>' . t('Widgets') . '</h2>',
     );
     
@@ -142,10 +142,10 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style_list {
         foreach ($location as $location_id => $location_name) {
           $widget_dependency = 'edit-style-options-widgets-' . $location_id . '-' . str_replace('_', '-', $widget_id);
           // Use Widget Checkbox
-          $form['widgets'][$location_id][$widget_id . '_enable'] = array(
+          $form['widgets'][$location_id][$widget_id]['enable'] = array(
             '#type' => 'checkbox',
             '#title' => t($widget_name),
-            '#default_value' => $this->options['widgets'][$location_id][$widget_id . '_enable'],
+            '#default_value' => $this->options['widgets'][$location_id][$widget_id]['enable'],
             '#description' => t('Should a !name be rendered at the !location of the slides.', array('!name' => $widget_name, '!location' => $location_name)),
           );
           

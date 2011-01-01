@@ -82,6 +82,6 @@ function views_slideshow_cycle_help($path, $arg) {
 
 function views_slideshow_cycle_views_slideshow_js_method_register() {
   return array(
-    'views_slideshow_cycle',
+    'viewsSlideshowCycle',
   );
 }
