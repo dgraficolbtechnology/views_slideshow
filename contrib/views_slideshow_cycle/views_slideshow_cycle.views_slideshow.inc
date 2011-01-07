@@ -38,6 +38,7 @@ function views_slideshow_cycle_views_slideshow_option_definition() {
       'nowrap' => array('default' => 0),
       'fixed_height' => array('default' => 1),
       'items_per_slide' => array('default' => 1),
+      'wait_for_image_load' => array('default' => 1),
 
       // Internet Explorer Tweaks
       'cleartype' => array('default' => 'true'),
@@ -293,6 +294,17 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
   // Advanced Options
   $form['views_slideshow_cycle']['advanced_options_header'] = array(
     '#value' => '<h2>' . t('jQuery Cycle Custom Options') . '</h2>',
+  );
+  $form['views_slideshow_cycle']['wait_for_image_load'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Wait for all the slide images to load'),
+    '#default_value' => $view->options['views_slideshow_cycle']['wait_for_image_load'],
+    '#description' => t('If selected the slideshow will not start unless all the slide images are loaded.  This will fix some issues on IE7/IE8/Chrome/Opera.'),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="style_options[views_slideshow_cycle][action_advanced]"]' => array('checked' => TRUE),
+      ),
+    ),
   );
   
   if (!file_exists(drupal_get_path('module', 'views_slideshow_cycle') . '/js/json2.js')) {
