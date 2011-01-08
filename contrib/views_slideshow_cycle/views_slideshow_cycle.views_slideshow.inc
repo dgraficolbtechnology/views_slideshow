@@ -53,9 +53,9 @@ function views_slideshow_cycle_views_slideshow_option_definition() {
 
 function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$form_state, &$view) {
   
-  if (!file_exists(drupal_get_path('module', 'views_slideshow_cycle') . '/js/jquery.cycle.all.min.js')) {
+  if (!file_exists('sites/all/libraries/jquery.cycle/jquery.cycle.all.min.js')) {
     $form['views_slideshow_cycle']['no_cycle_js'] = array(
-      '#value' => '<div style="color: red">' . t('You need to download jQuery cycle plugin and copy jquery.cycle.all.min.js to views_slideshow/contrib/views_slideshow_cycle/js You can find the module at !url.', array('!url' => l('http://malsup.com/jquery/cycle', 'http://malsup.com/jquery/cycle', array('attributes' => array('target' => '_blank'))))) . '</div>',
+      '#value' => '<div style="color: red">' . t('You need to download jQuery cycle plugin and copy jquery.cycle.all.min.js to sites/all/libraries/jquery.cycle You can find the plugin at !url.', array('!url' => l('http://malsup.com/jquery/cycle', 'http://malsup.com/jquery/cycle', array('attributes' => array('target' => '_blank'))))) . '</div>',
     );
   }
   
@@ -307,9 +307,9 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
     ),
   );
   
-  if (!file_exists(drupal_get_path('module', 'views_slideshow_cycle') . '/js/json2.js')) {
+  if (!file_exists('sites/all/libraries/json2/json2.js')) {
     $form['views_slideshow_cycle']['no_json_js'] = array(
-      '#value' => '<div>' . t('To use the advanced options you need to download json2.js. You can do this by clicking the download button at !url and extract json2.js to views_slideshow/contrib/views_slideshow_cycle/js', array('!url' => l('https://github.com/douglascrockford/JSON-js', 'https://github.com/douglascrockford/JSON-js', array('attributes' => array('target' => '_blank'))))) . '</div>',
+      '#value' => '<div>' . t('To use the advanced options you need to download json2.js. You can do this by clicking the download button at !url and extract json2.js to sites/all/libraries/json2', array('!url' => l('https://github.com/douglascrockford/JSON-js', 'https://github.com/douglascrockford/JSON-js', array('attributes' => array('target' => '_blank'))))) . '</div>',
     );
   }
   else {
