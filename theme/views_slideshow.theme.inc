@@ -24,6 +24,19 @@ function template_preprocess_views_slideshow(&$vars) {
    * Process Skins
    */
   $skin_info = $options['skin_info'];
+  $skin_info = array();
+  if (isset($options['skin_info'])) {
+    $skin_info = $options['skin_info'];
+  }
+  
+  // Make sure $skin_info has all the values. 
+  $skin_info += array(
+    'class' => 'default',
+    'title' => t('Untitled skin'),
+    'module' => 'views_slideshow',
+    'path' => '',
+    'stylesheets' => array(),
+  );
   
   $vars['skin'] = $skin_info['class'];
 
