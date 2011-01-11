@@ -1,7 +1,7 @@
 (function ($) {
   Drupal.viewsSlideshow = Drupal.viewsSlideshow || {};
   
-  Drupal.behaviors.viewsSlideshow = function (context) {
+  Drupal.behaviors.viewsSlideshowControlsText = function (context) {
     // Process previous link
     $('.views_slideshow_controls_text_previous:not(.views-slideshow-controls-text-previous-processed)', context).addClass('views-slideshow-controls-text-previous-processed').each(function() {
       var uniqueID = $(this).attr('id').replace('views_slideshow_controls_text_previous_', '');
@@ -33,28 +33,6 @@
         return false;
       });
     });
-    
-    // Process pause on hover for pager.
-    $('.views_slideshow_pager_field:not(.views-slideshow-pager-field-processed)', context).addClass('views-slideshow-pager-field-processed').each(function() {
-      // Parse out the location and unique id from the full id.
-      var pagerInfo = $(this).attr('id').split('_');
-      var location = pagerInfo[2];
-      pagerInfo.splice(0, 3);
-      var uniqueID = pagerInfo.join('_');
-      
-      // Add the activate and pause on pager hover event to each pager item.
-      if (Drupal.settings.viewsSlideshowPagerFields[uniqueID][location].activatePauseOnHover) {
-        $(this).children().each(function(index, pagerItem) {
-          $(pagerItem).hover(function() {
-            Drupal.viewsSlideshow.action({ "action": 'goToSlide', "slideshowID": uniqueID, "slideNum": index });
-            Drupal.viewsSlideshow.action({ "action": 'pause', "slideshowID": uniqueID });
-          },
-          function() {
-            Drupal.viewsSlideshow.action({ "action": 'play', "slideshowID": uniqueID });
-          });
-        });
-      }
-    });
   }
   
   Drupal.viewsSlideshowControlsText = Drupal.viewsSlideshowControlsText || {};
@@ -83,6 +61,30 @@
   // Theme control pause.
   Drupal.theme.prototype.viewsSlideshowControlsPlay = function () {
     return Drupal.t('Pause');
+  }
+  
+  Drupal.behaviors.viewsSlideshowPagerFields = function (context) {
+    // Process pause on hover.
+    $('.views_slideshow_pager_field:not(.views-slideshow-pager-field-processed)', context).addClass('views-slideshow-pager-field-processed').each(function() {
+      // Parse out the location and unique id from the full id.
+      var pagerInfo = $(this).attr('id').split('_');
+      var location = pagerInfo[2];
+      pagerInfo.splice(0, 3);
+      var uniqueID = pagerInfo.join('_');
+      
+      // Add the activate and pause on pager hover event to each pager item.
+      if (Drupal.settings.viewsSlideshowPagerFields[uniqueID][location].activatePauseOnHover) {
+        $(this).children().each(function(index, pagerItem) {
+          $(pagerItem).hover(function() {
+            Drupal.viewsSlideshow.action({ "action": 'goToSlide', "slideshowID": uniqueID, "slideNum": index });
+            Drupal.viewsSlideshow.action({ "action": 'pause', "slideshowID": uniqueID });
+          },
+          function() {
+            Drupal.viewsSlideshow.action({ "action": 'play', "slideshowID": uniqueID });
+          });
+        });
+      }
+    });
   }
   
   Drupal.viewsSlideshowPagerFields = Drupal.viewsSlideshowPagerFields || {};
