@@ -120,7 +120,7 @@ function theme_views_slideshow_pager_widget_render($vss_id, $view, $settings, $l
   $attributes['class'] = 'widget_pager widget_pager_' . $location;
   $attributes['id'] = 'widget_pager_' . $location . '_' . $vss_id;
   
-  return theme($settings['type'] . '_render', $vss_id, $view, $settings, $location, $rows, $attributes);
+  return theme($settings['type'] . '_render', $vss_id, $view, $settings, $location, $attributes);
 }
 
 /**
