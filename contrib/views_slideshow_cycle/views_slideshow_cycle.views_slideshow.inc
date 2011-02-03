@@ -401,7 +401,7 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
   }
 }
 
-function views_slideshow_cycle_form_options_js($element, &$form_state, &$form) {
+function views_slideshow_cycle_form_options_js($element, $edit, &$form_state, &$form) {
   drupal_add_js(drupal_get_path('module', 'views_slideshow_cycle') . '/js/formoptions.js');
   return $element;
 }
