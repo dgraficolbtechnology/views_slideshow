@@ -197,7 +197,7 @@ function theme_views_slideshow_controls_widget_render($vss_id, $view, $settings,
  */
 function template_preprocess_views_slideshow_controls_text_render(&$vars) {
   $module_path = drupal_get_path('module', 'views_slideshow');
-  drupal_add_css($module_path . '/views_slideshow_controls_text.css', array('type' => 'file'));
+  drupal_add_css($module_path . '/views_slideshow_controls_text.css');
   
   $vars['attributes']['class'] = 'views_slideshow_controls_text';
   $vars['attributes']['id'] = "views_slideshow_controls_text_" . $vars['vss_id'];
