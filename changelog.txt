@@ -1,4 +1,3 @@
-// $Id$
 
 2008-03-25
 move js to /js folder
