@@ -1,4 +1,3 @@
-// $Id$
 
 Changelog for Views Slideshow: ThumbnailHover
 

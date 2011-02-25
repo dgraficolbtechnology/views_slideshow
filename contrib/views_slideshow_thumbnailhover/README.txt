@@ -1,4 +1,3 @@
-// $Id$
 
 Views Slideshow: Thumbnail Hover
 

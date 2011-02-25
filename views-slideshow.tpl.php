@@ -1,5 +1,4 @@
 <?php
-// $Id$
 /**
  * @file views-slideshow.tpl.php
  * Default view template to display a slideshow.

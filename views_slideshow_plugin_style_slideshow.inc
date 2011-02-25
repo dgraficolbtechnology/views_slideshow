@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 // views_slideshow_plugin_style_slideshow.inc
 /**

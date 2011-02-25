@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  *  This inline js sets up the timer for this slideshow.
