@@ -1,4 +1,3 @@
-// $Id$
 
 // store the timer and current div data
 slideshow_data = new Array();
