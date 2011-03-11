@@ -105,12 +105,12 @@ function views_slideshow_views_slideshow_js_method_register() {
 }
 
 /**
- * Implementation of hook_views_slideshow_skins().
+ * Implementation of hook_views_slideshow_skin_info().
  */
-function views_slideshow_views_slideshow_skins() {
+function views_slideshow_views_slideshow_skin_info() {
   return array(
     'default' => array(
-      'title' => t('Default'),
+      'name' => t('Default'),
     ),
   );
 }
@@ -165,11 +165,15 @@ function views_slideshow_views_slideshow_widget_info() {
  */
 function views_slideshow_pager_views_slideshow_widget_form_options(&$form, &$form_state, &$view, $defaults, $dependency) {
   // Get all the pager info from other modules.
-  // hook_views_slideshow_pager_settings($view, $option_values, $dependency_prefix)
-  $pagers = module_invoke_all('views_slideshow_widget_pager_settings', $view);
+  // hook_views_slideshow_pager_info($view, $option_values, $dependency_prefix)
+  $pagers = module_invoke_all('views_slideshow_widget_pager_info', $view);
   
   if (!empty($pagers)) {
-    asort($pagers);
+    $pager_options = array();
+    foreach($pagers as $pager_id => $pager_info) {
+      $pager_options[$pager_id] = $pager_info['name'];
+    }
+    asort($pager_options);
     
     // Create the widget type field.
     $form['type'] = array(
@@ -177,7 +181,7 @@ function views_slideshow_pager_views_slideshow_widget_form_options(&$form, &$for
       '#title' => t('Pager Type'),
       '#description' => t('Style of the pager'),
       '#default_value' => $defaults['type'],
-      '#options' => $pagers,
+      '#options' => $pager_options,
       '#process' => array('views_process_dependency'),
       '#dependency' => array($dependency . '-enable' => array(1)),
     );
@@ -193,7 +197,7 @@ function views_slideshow_pager_views_slideshow_widget_form_options(&$form, &$for
       $dependency,
     );
     
-    foreach ($pagers as $pager_key => $pager_title) {
+    foreach ($pagers as $pager_key => $pager_info) {
       $function = $pager_key . '_views_slideshow_widget_pager_form_options';
       if (function_exists($function)) {
         call_user_func_array($function, $arguments);
@@ -208,15 +212,17 @@ function views_slideshow_pager_views_slideshow_widget_form_options(&$form, &$for
 }
 
 /**
- * Implementation of hook_views_slideshow_pager_settings
+ * Implementation of hook_views_slideshow_pager_info
  */
-function views_slideshow_views_slideshow_widget_pager_settings($view) {
+function views_slideshow_views_slideshow_widget_pager_info($view) {
   $settings = array();
   // Settings for fields pager.
   // First verfiy that the view is using fields.
   if ($view->row_plugin->uses_fields()) {
     $settings = array(
-      'views_slideshow_pager_fields' => t('Fields'),
+      'views_slideshow_pager_fields' => array(
+        'name' => t('Fields'),
+      ),
     );
   }
   
@@ -280,10 +286,14 @@ function views_slideshow_pager_fields_views_slideshow_widget_pager_form_options(
 function views_slideshow_controls_views_slideshow_widget_form_options(&$form, &$form_state, &$view, $defaults, $dependency) {
   // Get all the pager info from other modules.
   // hook_views_slideshow_controls_settings($view, $option_values, $dependency_prefix)
-  $controls = module_invoke_all('views_slideshow_widget_controls_settings', $view);
+  $controls = module_invoke_all('views_slideshow_widget_controls_info', $view);
   
   if (!empty($controls)) {
-    asort($controls);
+    $control_type_options = array();
+    foreach($controls as $control_id => $control_info) {
+      $control_type_options[$control_id] = $control_info['name'];
+    }
+    asort($control_type_options);
     
     // Create the widget type field.
     $form['type'] = array(
@@ -291,7 +301,7 @@ function views_slideshow_controls_views_slideshow_widget_form_options(&$form, &$
       '#title' => t('Controls Type'),
       '#description' => t('Style of the controls'),
       '#default_value' => $defaults['type'],
-      '#options' => $controls,
+      '#options' => $control_type_options,
       '#process' => array('views_process_dependency'),
       '#dependency' => array($dependency . '-enable' => array(1)),
     );
@@ -307,7 +317,7 @@ function views_slideshow_controls_views_slideshow_widget_form_options(&$form, &$
       $dependency,
     );
     
-    foreach ($controls as $control_key => $control_title) {
+    foreach ($controls as $control_key => $control_info) {
       $function = $control_key . '_views_slideshow_widget_controls_form_options';
       if (function_exists($function)) {
         call_user_func_array($function, $arguments);
@@ -322,14 +332,14 @@ function views_slideshow_controls_views_slideshow_widget_form_options(&$form, &$
 }
 
 /**
- * Implementation of hook_views_slideshow_controls_settings
+ * Implementation of hook_views_slideshow_controls_info
  */
-function views_slideshow_views_slideshow_widget_controls_settings($view) {
-  $settings = array(
-    'views_slideshow_controls_text' => t('Text'),
+function views_slideshow_views_slideshow_widget_controls_info($view) {
+  return array(
+    'views_slideshow_controls_text' => array(
+      'name' => t('Text'),
+    ),
   );
-  
-  return $settings;
 }
 
 /**
@@ -343,7 +353,7 @@ function views_slideshow_views_slideshow_option_definition() {
   $options['skin_info'] = array(
     'default' => array(
       'class' => 'default',
-      'title' => t('Untitled skin'),
+      'name' => t('Untitled skin'),
       'module' => 'views_slideshow',
       'path' => '',
       'stylesheets' => array(),
