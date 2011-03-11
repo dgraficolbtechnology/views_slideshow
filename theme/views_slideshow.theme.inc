@@ -95,7 +95,6 @@ function template_preprocess_views_slideshow(&$vars) {
   /**
    * Process Widgets
    */
-  $widgets = module_invoke_all('views_slideshow_widget_info');
 
   // Build weights
   for ($i = 1; $i <= count($widgets); $i++) {
