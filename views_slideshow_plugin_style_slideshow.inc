@@ -62,14 +62,20 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style_list {
     );
     
     // Get all slideshow types.
-    $modules = module_invoke_all('views_slideshow_slideshow_types');
+    $slideshows = module_invoke_all('views_slideshow_slideshow_types');
+    
+    $slideshow_options = array();
+    
+    foreach ($slideshows as $slideshow_id => $slideshow_info) {
+      $slideshow_options[$slideshow_id] = $slideshow_info['name'];
+    }
 
-    if ($modules) { 
+    if ($slideshows) { 
       
       $form['slideshow_type'] = array(
         '#type' => 'select',
         '#title' => t('Slideshow Type'),
-        '#options' => $modules,
+        '#options' => $slideshow_options,
         '#default_value' => $this->options['slideshow_type'],
       );
       
@@ -140,16 +146,50 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style_list {
       
       // Loop through our widgets and locations to build our form values for
       // each widget.
-      foreach ($widgets as $widget_id => $widget_name) {
+      foreach ($widgets as $widget_id => $widget_info) {
         foreach ($location as $location_id => $location_name) {
           $widget_dependency = 'edit-style-options-widgets-' . $location_id . '-' . str_replace('_', '-', $widget_id);
+          
+          // Determine if a widget is compatible with a slideshow.
+          $compatible_slideshows = array();
+          foreach ($slideshows as $slideshow_id => $slideshow_info) {
+            $is_compatible = 1;
+            // Check if every required accept value in the widget has a
+            // corresponding calls value in the slideshow.
+            foreach($widget_info['accepts'] as $accept_key => $accept_value) {
+              if (is_array($accept_value) && !empty($accept_value['required']) && !in_array($accept_key, $slideshow_info['calls'])) {
+                $is_compatible = 0;
+                break;
+              }
+            }
+            
+            // No need to go through this if it's not compatible.
+            if ($is_compatible) {
+              // Check if every required calls value in the widget has a
+              // corresponding accepts call.
+              foreach($widget_info['calls'] as $calls_key => $calls_value) {
+                if (is_array($calls_value) && !empty($calls_value['required']) && !in_array($calls_key, $slideshow_info['accepts'])) {
+                  $is_compatible = 0;
+                  break;
+                }
+              }
+            }
+            
+            // If it passed all those tests then they are compatible.
+            if ($is_compatible) {
+              $compatible_slideshows[] = $slideshow_id;
+            }
+          }
+
           // Use Widget Checkbox
           $form['widgets'][$location_id][$widget_id]['enable'] = array(
             '#type' => 'checkbox',
-            '#title' => t($widget_name),
+            '#title' => t($widget_info['name']),
             '#default_value' => $this->options['widgets'][$location_id][$widget_id]['enable'],
-            '#description' => t('Should a !name be rendered at the !location of the slides.', array('!name' => $widget_name, '!location' => $location_name)),
+            '#description' => t('Should !name be rendered at the !location of the slides.', array('!name' => $widget_info['name'], '!location' => $location_name)),
           );
+          
+          $form['widgets'][$location_id][$widget_id]['enable']['#dependency']['edit-style-options-slideshow-type'] = !empty($compatible_slideshows) ? $compatible_slideshows : array('none');
           
           // Widget weight
           // We check to see if the default value is greater than the number of
@@ -157,14 +197,14 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style_list {
           // hasn't been saved again.
           $form['widgets'][$location_id][$widget_id]['weight'] = array(
             '#type' => 'select',
-            '#title' => t('Weight of the !name', array('!name' => $widget_name)),
+            '#title' => t('Weight of the !name', array('!name' => $widget_info['name'])),
             '#default_value' => ($this->options['widgets'][$location_id][$widget_id]['weight'] > count($widgets)) ? count($widgets) : $this->options['widgets'][$location_id][$widget_id]['weight'],
             '#options' => $weights,
-            '#description' => t('Determines in what order the !name appears.  A lower weight will cause the !name to be above higher weight items.', array('!name' => $widget_name)),
+            '#description' => t('Determines in what order the !name appears.  A lower weight will cause the !name to be above higher weight items.', array('!name' => $widget_info['name'])),
             '#process' => array('views_process_dependency'),
             '#dependency' => array($widget_dependency . '-enable' => array(1)),
           );
-          
+
           // Add all the widget settings.
           if (function_exists($widget_id . '_views_slideshow_widget_form_options')) {
             $arguments = array(
