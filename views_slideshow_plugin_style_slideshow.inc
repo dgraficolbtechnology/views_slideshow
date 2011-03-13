@@ -63,14 +63,13 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style_list {
     
     // Get all slideshow types.
     $slideshows = module_invoke_all('views_slideshow_slideshow_info');
-    
-    $slideshow_options = array();
-    
-    foreach ($slideshows as $slideshow_id => $slideshow_info) {
-      $slideshow_options[$slideshow_id] = $slideshow_info['name'];
-    }
 
-    if ($slideshows) { 
+    if ($slideshows) {
+      // Build our slideshow options for the form.
+      $slideshow_options = array();
+      foreach ($slideshows as $slideshow_id => $slideshow_info) {
+        $slideshow_options[$slideshow_id] = $slideshow_info['name'];
+      }
       
       $form['slideshow_type'] = array(
         '#type' => 'select',
@@ -98,7 +97,7 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style_list {
         
         $form[$module] = array(
           '#type' => 'fieldset',
-          '#title' => t('!module options', array('!module' => $modules[$module])),
+          '#title' => t('!module options', array('!module' => $slideshows[$module]['name'])),
           '#collapsible' => TRUE,
           '#attributes' => array('class' => $module),
         );
