@@ -184,7 +184,7 @@ function hook_views_slideshow_widget_pager_info($view) {
 /**
  * Hook called by the pager widget to add form items.
  */
-function [widget-type]_views_slideshow_widget_pager_form_options(&$form, &$form_state, &$view, $defaults, $dependency) {  
+function [widget-type]_views_slideshow_widget_pager_form_options(&$form, &$form_state, &$view, $defaults, $dependency) {
 }
 
 /**
@@ -196,7 +196,7 @@ function hook_views_slideshow_widget_controls_info($view) {
 /**
  * Hook called by the controls widget to add form items.
  */
-function [widget-type]_views_slideshow_widget_controls_form_options(&$form, &$form_state, &$view, $defaults, $dependency) {  
+function [widget-type]_views_slideshow_widget_controls_form_options(&$form, &$form_state, &$view, $defaults, $dependency) {
 }
 
 /**
