@@ -162,9 +162,9 @@ function theme_views_slideshow_pager_widget_render($vss_id, $view, $settings, $l
   // Add javascript settings for the pager type.
   $js_vars = array(
     'viewsSlideshowPager' => array(
-      $vars['vss_id'] => array(
-        $vars['location'] => array(
-          'type' => preg_replace('/_(.?)/e',"strtoupper('$1')", $vars['settings']['type']),
+      $vss_id => array(
+        $location => array(
+          'type' => preg_replace('/_(.?)/e',"strtoupper('$1')", $settings['type']),
         ),
       ),
     ),
