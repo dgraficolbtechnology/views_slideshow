@@ -1,1 +1,1 @@
-<span <?php print drupal_attributes($attributes); ?>><?php print t('Previous'); ?></span>
+<span <?php print drupal_attributes($attributes); ?>><a href="#"><?php print t('Previous'); ?></a></span>
