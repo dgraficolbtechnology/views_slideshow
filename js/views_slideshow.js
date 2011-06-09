@@ -20,7 +20,7 @@
     }
     catch(err) {
       // Don't need to do anything on error.
-    }
+    };
 
     try {
       if (typeof Drupal.settings.viewsSlideshowControls[options.slideshowID].bottom.type != "undefined" && typeof Drupal[Drupal.settings.viewsSlideshowControls[options.slideshowID].bottom.type].play == 'function') {
@@ -30,7 +30,7 @@
     catch(err) {
       // Don't need to do anything on error.
     }
-  }
+  };
 
   /**
    * Implement the pause hook for controls.
@@ -56,7 +56,7 @@
     catch(err) {
       // Don't need to do anything on error.
     }
-  }
+  };
 
 
   /**
@@ -96,7 +96,7 @@
         return false;
       });
     });
-  }
+  };
 
   Drupal.viewsSlideshowControlsText = Drupal.viewsSlideshowControlsText || {};
 
@@ -106,7 +106,7 @@
   Drupal.viewsSlideshowControlsText.pause = function (options) {
     var pauseText = Drupal.theme.prototype['viewsSlideshowControlsPause'] ? Drupal.theme('viewsSlideshowControlsPause') : '';
     $('#views_slideshow_controls_text_pause_' + options.slideshowID + ' a').text(pauseText);
-  }
+  };
 
   /**
    * Implement the play hook for text controls.
@@ -114,17 +114,17 @@
   Drupal.viewsSlideshowControlsText.play = function (options) {
     var playText = Drupal.theme.prototype['viewsSlideshowControlsPlay'] ? Drupal.theme('viewsSlideshowControlsPlay') : '';
     $('#views_slideshow_controls_text_pause_' + options.slideshowID + ' a').text(playText);
-  }
+  };
 
   // Theme the resume control.
   Drupal.theme.prototype.viewsSlideshowControlsPause = function () {
     return Drupal.t('Resume');
-  }
+  };
 
   // Theme the pause control.
   Drupal.theme.prototype.viewsSlideshowControlsPlay = function () {
     return Drupal.t('Pause');
-  }
+  };
 
   /**
    * Views Slideshow Pager
@@ -155,7 +155,7 @@
     catch(err) {
       // Don't need to do anything on error.
     }
-  }
+  };
 
   /**
    * Implement the goToSlide hook for pagers.
@@ -181,7 +181,7 @@
     catch(err) {
       // Don't need to do anything on error.
     }
-  }
+  };
 
   /**
    * Implement the previousSlide hook for pagers.
@@ -207,7 +207,7 @@
     catch(err) {
       // Don't need to do anything on error.
     }
-  }
+  };
 
   /**
    * Implement the nextSlide hook for pagers.
@@ -233,7 +233,7 @@
     catch(err) {
       // Don't need to do anything on error.
     }
-  }
+  };
 
 
   /**
@@ -270,7 +270,7 @@
         });
       }
     });
-  }
+  };
 
   Drupal.viewsSlideshowPagerFields = Drupal.viewsSlideshowPagerFields || {};
 
@@ -283,7 +283,7 @@
 
     // Add active class to active pager.
     $('#views_slideshow_pager_field_item_' + options.slideshowID + '_' + options.slideNum).addClass('active');
-  }
+  };
 
   /**
    * Implement the goToSlide hook for pager fields pager.
@@ -294,7 +294,7 @@
 
     // Add active class to active pager.
     $('#views_slideshow_pager_field_item_' + options.slideshowID + '_' + options.slideNum).addClass('active');
-  }
+  };
 
   /**
    * Implement the previousSlide hook for pager fields pager.
@@ -317,7 +317,7 @@
 
     // Add active class to active pager.
     $('#views_slideshow_pager_field_item_' + options.slideshowID + '_' + pagerNum).addClass('active');
-  }
+  };
 
   /**
    * Implement the nextSlide hook for pager fields pager.
@@ -339,7 +339,7 @@
 
     // Add active class to active pager.
     $('#views_slideshow_pager_field_item_' + options.slideshowID + '_' + slideNum).addClass('active');
-  }
+  };
 
 
   /**
@@ -353,7 +353,7 @@
    */
   Drupal.viewsSlideshowSlideCounter.transitionBegin = function (options) {
     $('#views_slideshow_slide_counter_' + options.slideshowID + ' .num').text(options.slideNum + 1);
-  }
+  };
 
   /**
    * This is used as a router to process actions for the slideshow.
@@ -424,5 +424,5 @@
         status.text = Drupal.t('An invalid action "!action" was specified.', { "!action": options.action });
     }
     return status;
-  }
+  };
 })(jQuery);
