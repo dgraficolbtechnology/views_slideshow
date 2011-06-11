@@ -233,7 +233,7 @@ function template_preprocess_views_slideshow_pager_fields_render(&$vars) {
         $rendered_fields .= theme('views_slideshow_pager_field_field', $vars['view'], $field, $count);
       }
     }
-    $vars['rendered_field_items'] .= theme('views_slideshow_pager_field_item', $vars['vss_id'], $rendered_fields, $count);
+    $vars['rendered_field_items'] .= theme('views_slideshow_pager_field_item', $vars['vss_id'], $rendered_fields, $count, $vars['location']);
   }
 }
 
@@ -253,7 +253,7 @@ function template_preprocess_views_slideshow_pager_field_item(&$vars) {
   $classes[] = ($vars['count'] % 2) ? 'views-row-even' : 'views-row-odd';
 
   $vars['attributes']['class'] = implode(' ', $classes);
-  $vars['attributes']['id'] = 'views_slideshow_pager_field_item_' . $vars['vss_id'] . '_' . $vars['count'];
+  $vars['attributes']['id'] = 'views_slideshow_pager_field_item_' . $vars['location'] . '_' . $vars['vss_id'] . '_' . $vars['count'];
 }
 
 /**
