@@ -200,13 +200,13 @@ function theme_views_slideshow_pager_widget_render($vss_id, $view, $settings, $l
   // Create some attributes
   $attributes['class'] = 'widget_pager widget_pager_' . $location;
   $attributes['id'] = 'widget_pager_' . $location . '_' . $vss_id;
-  return theme($settings['type'] . '_render', $vss_id, $view, $settings, $location, $attributes);
+  return theme($settings['type'], $vss_id, $view, $settings, $location, $attributes);
 }
 
 /**
  * Theme pager fields
  */
-function template_preprocess_views_slideshow_pager_fields_render(&$vars) {
+function template_preprocess_views_slideshow_pager_fields(&$vars) {
   // Build our javascript settings.
   $js_vars = array(
     'viewsSlideshowPagerFields' => array(
@@ -277,7 +277,7 @@ function theme_views_slideshow_controls_widget_render($vss_id, $view, $settings,
 
   $output = '';
   if (count($rows) > 1) {
-    $output = theme($settings['type'] . '_render', $vss_id, $view, $settings, $location, $rows);
+    $output = theme($settings['type'], $vss_id, $view, $settings, $location, $rows);
   }
 
   return $output;
@@ -288,7 +288,7 @@ function theme_views_slideshow_controls_widget_render($vss_id, $view, $settings,
  *
  * @ingroup themeable
  */
-function template_preprocess_views_slideshow_controls_text_render(&$vars) {
+function template_preprocess_views_slideshow_controls_text(&$vars) {
   $module_path = drupal_get_path('module', 'views_slideshow');
   drupal_add_css($module_path . '/views_slideshow_controls_text.css');
 
