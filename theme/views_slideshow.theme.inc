@@ -7,7 +7,7 @@
  * This just adds a wrapper div to the slideshow.
  */
 
-function template_preprocess_views_slideshow(&$vars) {
+function _views_slideshow_preprocess_views_slideshow(&$vars) {
   $options = $vars['options'];
   $vars['skin'] = 'default';
   $vars['slideshow'] = '';
@@ -206,7 +206,7 @@ function theme_views_slideshow_pager_widget_render($vss_id, $view, $settings, $l
 /**
  * Theme pager fields
  */
-function template_preprocess_views_slideshow_pager_fields(&$vars) {
+function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
   // Build our javascript settings.
   $js_vars = array(
     'viewsSlideshowPagerFields' => array(
@@ -242,7 +242,7 @@ function template_preprocess_views_slideshow_pager_fields(&$vars) {
  *
  * @ingroup themeable
  */
-function template_preprocess_views_slideshow_pager_field_item(&$vars) {
+function _views_slideshow_preprocess_views_slideshow_pager_field_item(&$vars) {
   $current = $vars['count'] + 1;
   $classes = array(
     'views_slideshow_pager_field_item',
@@ -288,7 +288,7 @@ function theme_views_slideshow_controls_widget_render($vss_id, $view, $settings,
  *
  * @ingroup themeable
  */
-function template_preprocess_views_slideshow_controls_text(&$vars) {
+function _views_slideshow_preprocess_views_slideshow_controls_text(&$vars) {
   $module_path = drupal_get_path('module', 'views_slideshow');
   drupal_add_css($module_path . '/views_slideshow_controls_text.css');
 
@@ -307,7 +307,7 @@ function template_preprocess_views_slideshow_controls_text(&$vars) {
  *
  * @ingroup themeable
  */
-function template_preprocess_views_slideshow_controls_text_previous(&$vars) {
+function _views_slideshow_preprocess_views_slideshow_controls_text_previous(&$vars) {
   $vars['attributes']['class'] = 'views_slideshow_controls_text_previous';
   $vars['attributes']['id'] = 'views_slideshow_controls_text_previous_' . $vars['vss_id'];
 }
@@ -317,7 +317,7 @@ function template_preprocess_views_slideshow_controls_text_previous(&$vars) {
  *
  * @ingroup themeable
  */
-function template_preprocess_views_slideshow_controls_text_pause(&$vars) {
+function _views_slideshow_preprocess_views_slideshow_controls_text_pause(&$vars) {
   $vars['attributes']['class'] = 'views_slideshow_controls_text_pause';
   $vars['attributes']['id'] = 'views_slideshow_controls_text_pause_' . $vars['vss_id'];
   $vars['start_text'] = t('Pause');
@@ -328,7 +328,7 @@ function template_preprocess_views_slideshow_controls_text_pause(&$vars) {
  *
  * @ingroup themeable
  */
-function template_preprocess_views_slideshow_controls_text_next(&$vars) {
+function _views_slideshow_preprocess_views_slideshow_controls_text_next(&$vars) {
   $vars['attributes']['class'] = 'views_slideshow_controls_text_next';
   $vars['attributes']['id'] = 'views_slideshow_controls_text_next_' . $vars['vss_id'];
 }
@@ -345,7 +345,7 @@ function theme_views_slideshow_slide_counter_widget_render($vss_id, $view, $sett
 /**
  * Views Slideshow: slide counter.
  */
-function template_preprocess_views_slideshow_slide_counter(&$vars) {
+function _views_slideshow_preprocess_views_slideshow_slide_counter(&$vars) {
   $vars['attributes']['class'] = 'views_slideshow_slide_counter';
   $vars['attributes']['id'] = "views_slideshow_slide_counter_" . $vars['vss_id'];
 }
