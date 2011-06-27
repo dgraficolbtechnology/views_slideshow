@@ -20,7 +20,6 @@ function views_slideshow_thumbnailhover_views_slideshow_option_definition() {
       'effect' => array('default' => 'fade'),
       'speed' => array('default' => 300),
       'start_paused' => array('default', 0),
-      'fade_value' => array('default' => 0.25),
       'hover_breakout' => array('default' => 'teaser'),
       'teasers_last' => array('default' => TRUE),
       'hover' => array('default' => module_exists('hoverintent') ? 'hoverIntent' : 'hover'),
