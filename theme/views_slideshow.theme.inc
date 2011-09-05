@@ -220,6 +220,17 @@ function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
 
   // Add the settings to the page.
   drupal_add_js($js_vars, 'setting');
+  
+  // Add hover intent library
+  if ($vars['settings']['views_slideshow_pager_fields_hover']) {
+    if (module_exists('libraries')) {
+      // Load jQuery hoverIntent
+      $hoverIntent_path = libraries_get_path('jquery.hoverIntent');
+      if (!empty($hoverIntent_path) && file_exists($hoverIntent_path . '/jquery.hoverIntent.js')) {
+        drupal_add_js($hoverIntent_path . '/jquery.hoverIntent.js');
+      }
+    }
+  }
 
   // Add our class to the wrapper.
   $vars['attributes']['class'] = (isset($vars['attributes']['class'])) ? $vars['attributes']['class'] . ' views_slideshow_pager_field' : 'views_slideshow_pager_field';
