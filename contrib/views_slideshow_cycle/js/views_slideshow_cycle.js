@@ -159,6 +159,7 @@
             case "fx":
             case "height":
             case "manualTrump":
+            case "metaAttr":
             case "next":
             case "nowrap":
             case "pager":
@@ -180,6 +181,7 @@
             case "startingSlide":
             case "sync":
             case "timeout":
+            case "width":
               settings.opts[option] = advancedOptions[option];
               break;
 
