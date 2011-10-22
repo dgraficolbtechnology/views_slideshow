@@ -235,16 +235,19 @@ function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
   // Add our class to the wrapper.
   $vars['attributes']['class'] = (isset($vars['attributes']['class'])) ? $vars['attributes']['class'] . ' views_slideshow_pager_field' : 'views_slideshow_pager_field';
 
-  // Render all the fields.
+  // Render all the fields unless there is only 1 slide and the user specified
+  // to hide them when there is only one slide.
   $vars['rendered_field_items'] = '';
-  foreach ($vars['view']->result as $count => $node) {
-    $rendered_fields = '';
-    foreach ($vars['settings']['views_slideshow_pager_fields_fields'] as $field => $use) {
-      if ($use !== 0 && is_object($vars['view']->field[$field])) {
-        $rendered_fields .= theme('views_slideshow_pager_field_field', $vars['view'], $field, $count);
+  if (empty($vars['settings']['views_slideshow_pager_fields_hide_on_single_slide']) && count($vars['view']->result) > 1) {
+    foreach ($vars['view']->result as $count => $node) {
+      $rendered_fields = '';
+      foreach ($vars['settings']['views_slideshow_pager_fields_fields'] as $field => $use) {
+        if ($use !== 0 && is_object($vars['view']->field[$field])) {
+          $rendered_fields .= theme('views_slideshow_pager_field_field', $vars['view'], $field, $count);
+        }
       }
+      $vars['rendered_field_items'] .= theme('views_slideshow_pager_field_item', $vars['vss_id'], $rendered_fields, $count, $vars['location']);
     }
-    $vars['rendered_field_items'] .= theme('views_slideshow_pager_field_item', $vars['vss_id'], $rendered_fields, $count, $vars['location']);
   }
 }
 
