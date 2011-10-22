@@ -279,9 +279,9 @@ function theme_views_slideshow_controls_widget_render($vss_id, $view, $settings,
   // Add javascript settings for the controls type.
   $js_vars = array(
     'viewsSlideshowControls' => array(
-      $vars['vss_id'] => array(
-        $vars['location'] => array(
-          'type' => preg_replace('/_(.?)/e',"strtoupper('$1')", $vars['settings']['type']),
+      $vss_id => array(
+        $location => array(
+          'type' => preg_replace('/_(.?)/e',"strtoupper('$1')", $settings['type']),
         ),
       ),
     ),
