@@ -135,7 +135,7 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame(&$va
   foreach ($rows as $count => $item) {
     $items[] = $item;
     if (count($items) == $items_per_slide || $count == (count($rows)-1)) {
-      $rendered_rows .= theme('views_slideshow_cycle_main_frame_row', $vss_id, $items, $slideshow_count);
+      $rendered_rows .= theme('views_slideshow_cycle_main_frame_row', $vss_id, $items, $slideshow_count, $view);
       $items = array();
       $slideshow_count++;
     }
@@ -165,7 +165,7 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row(
 
   $vars['rendered_items'] = '';
   foreach ($vars['items'] as $item_count => $item) {
-    $vars['rendered_items'] .= theme('views_slideshow_cycle_main_frame_row_item', $item, $item_count);
+    $vars['rendered_items'] .= theme('views_slideshow_cycle_main_frame_row_item', $item, $item_count, $view);
   }
 }
 
@@ -180,5 +180,13 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row_
   else {
     $classes[] = 'views-row-odd';
   }
+  
+  /**
+   * Support custom row classes.
+   */
+  if ($row_class = $vars['view']->style_plugin->get_row_class($vars['item_count'])) {
+    $classes[] = $row_class;
+  }
+  
   $vars['attributes']['class'] = implode(' ', $classes);
 }
