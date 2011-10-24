@@ -56,6 +56,7 @@ function views_slideshow_cycle_views_slideshow_option_definition() {
       'fixed_height' => array('default' => 1),
       'items_per_slide' => array('default' => 1),
       'wait_for_image_load' => array('default' => 1),
+      'wait_for_image_load_timeout' => array('default' => 3000),
 
       // Internet Explorer Tweaks
       'cleartype' => array('default' => 'true'),
@@ -286,6 +287,26 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
     '#process' => array('views_process_dependency'),
     '#dependency' => array('edit-style-options-views-slideshow-cycle-action-advanced' => array(1)),
   );
+  $form['views_slideshow_cycle']['wait_for_image_load'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Wait for all the slide images to load'),
+    '#default_value' => $view->options['views_slideshow_cycle']['wait_for_image_load'],
+    '#description' => t('If selected the slideshow will not start unless all the slide images are loaded.  This will fix some issues on IE7/IE8/Chrome/Opera.'),
+    '#process' => array('views_process_dependency'),
+    '#dependency' => array('edit-style-options-views-slideshow-cycle-action-advanced' => array(1)),
+  );
+  $form['views_slideshow_cycle']['wait_for_image_load_timeout'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Timeout'),
+    '#default_value' => $view->options['views_slideshow_cycle']['wait_for_image_load_timeout'],
+    '#description' => t('How long should it wait until it starts the slideshow anyway. Time is in milliseconds.'),
+    '#process' => array('views_process_dependency'),
+    '#dependency_count' => 2,
+    '#dependency' => array(
+      'edit-style-options-views-slideshow-cycle-action-advanced' => array(1),
+      'edit-style-options-views-slideshow-cycle-wait-for-image-load' => array(1),
+    ),
+  );
 
   // Internet Explorer Tweaks
   $form['views_slideshow_cycle']['ie_tweaks'] = array(
@@ -310,17 +331,6 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
   // Advanced Options
   $form['views_slideshow_cycle']['advanced_options_header'] = array(
     '#value' => '<h2>' . t('jQuery Cycle Custom Options') . '</h2>',
-  );
-  $form['views_slideshow_cycle']['wait_for_image_load'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Wait for all the slide images to load'),
-    '#default_value' => $view->options['views_slideshow_cycle']['wait_for_image_load'],
-    '#description' => t('If selected the slideshow will not start unless all the slide images are loaded.  This will fix some issues on IE7/IE8/Chrome/Opera.'),
-    '#states' => array(
-      'visible' => array(
-        ':input[name="style_options[views_slideshow_cycle][action_advanced]"]' => array('checked' => TRUE),
-      ),
-    ),
   );
 
   $json2_path = libraries_get_path('json2');
