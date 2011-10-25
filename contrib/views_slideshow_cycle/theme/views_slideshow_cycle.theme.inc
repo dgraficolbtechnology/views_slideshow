@@ -165,7 +165,7 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row(
 
   $vars['rendered_items'] = '';
   foreach ($vars['items'] as $item_count => $item) {
-    $vars['rendered_items'] .= theme('views_slideshow_cycle_main_frame_row_item', $item, $item_count, $view);
+    $vars['rendered_items'] .= theme('views_slideshow_cycle_main_frame_row_item', $item, $item_count, $vars['view']);
   }
 }
 

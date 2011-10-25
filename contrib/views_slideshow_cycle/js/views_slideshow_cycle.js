@@ -316,9 +316,9 @@
 
   // Start the slideshow.
   Drupal.viewsSlideshowCycle.load = function (fullId) {
+    var settings = Drupal.settings.viewsSlideshowCycle[fullId];
     // Make sure the slideshow isn't already loaded.
     if (!settings.loaded) {
-      var settings = Drupal.settings.viewsSlideshowCycle[fullId];
       $(settings.targetId).cycle(settings.opts);
   
       // Start Paused
