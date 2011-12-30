@@ -12,7 +12,7 @@ function _views_slideshow_preprocess_views_slideshow(&$vars) {
   $vars['skin'] = 'default';
   $vars['slideshow'] = '';
   $main_frame_module = $options['slideshow_type'];
-  
+
   if (empty($main_frame_module)) {
     // Get all slideshow types.
     $slideshows = module_invoke_all('views_slideshow_slideshow_info');
@@ -24,7 +24,7 @@ function _views_slideshow_preprocess_views_slideshow(&$vars) {
       }
     }
   }
-  
+
    // Make sure the main slideshow settings are defined before building the
    // slideshow.
   if (empty($main_frame_module)) {
@@ -220,7 +220,7 @@ function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
 
   // Add the settings to the page.
   drupal_add_js($js_vars, 'setting');
-  
+
   // Add hover intent library
   if ($vars['settings']['views_slideshow_pager_fields_hover']) {
     if (module_exists('libraries')) {
@@ -332,7 +332,7 @@ function _views_slideshow_preprocess_views_slideshow_controls_text_previous(&$va
  * @ingroup themeable
  */
 function _views_slideshow_preprocess_views_slideshow_controls_text_pause(&$vars) {
-  $vars['attributes']['class'] = 'views_slideshow_controls_text_pause';
+  $vars['attributes']['class'] = 'views_slideshow_controls_text_pause  views-slideshow-controls-text-status-play';
   $vars['attributes']['id'] = 'views_slideshow_controls_text_pause_' . $vars['vss_id'];
   $vars['start_text'] = t('Pause');
 }
