@@ -38,6 +38,7 @@ function views_slideshow_thumbnailhover_views_slideshow_option_definition() {
       'pager_event' => array('default' => 'hover'),
       'controls' => array('default' => 0),
       'image_count' => array('default' => 0),
+      'nowrap' => array('default' => 0),
       'sync' => array('default' => 1),
       'advanced' => array('default' => ''),
       'ie' => array(
@@ -63,7 +64,7 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
       '#default_value' => $view->options['views_slideshow_thumbnailhover']['hover'],
       '#description' => t('The !hoverintent, if installed, adds the %hoverintent option here. Selecting it causes a delay when the mouse hovers, to stop quick flybys from triggering the behavior. Selecting %hoverdefault chooses the default mouse behavior.', array('!hoverintent' => l(t('HoverIntent module'), 'http://drupal.org/project/hoverintent'), '%hoverintent' => t('HoverIntent'), '%hoverdefault' => t('Hover'))),
     );
-  }  
+  }
   $options = array(
     'title' => t('Title'),
     'teaser' => t('Teaser'),
@@ -91,7 +92,7 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
       '#default_value' => $view->options['views_slideshow_thumbnailhover']['breakout_fields'],
       '#description' => t("Choose the fields that will appear in the breakout thumbnails."),
     );
-  } 
+  }
   else {
     $form['views_slideshow_thumbnailhover']['hover_breakout'] = array(
       '#type' => 'radios',
@@ -123,13 +124,13 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
     '#type' => 'textfield',
     '#title' => t('Speed'),
     '#default_value' => $view->options['views_slideshow_thumbnailhover']['speed'],
-    '#description' => t('Time in milliseconds that each transition lasts. Numeric only!'),  
+    '#description' => t('Time in milliseconds that each transition lasts. Numeric only!'),
   );
   $form['views_slideshow_thumbnailhover']['start_paused'] = array(
     '#type' => 'checkbox',
     '#title' => t('Start Slideshow Paused'),
     '#default_value' => $view->options['views_slideshow_thumbnailhover']['start_paused'],
-    '#description' => t('Start the slideshow in the paused state.'),  
+    '#description' => t('Start the slideshow in the paused state.'),
   );
   $form['views_slideshow_thumbnailhover']['fixed_height'] = array(
     '#type' => 'select',
@@ -278,14 +279,14 @@ function views_slideshow_thumbnailhover_views_slideshow_options_form(&$form, &$f
     '#title' => t('Sync'),
     '#options' => array(1 => t('Yes'), 2 => t('No')),
     '#default_value' => $view->options['views_slideshow_thumbnailhover']['sync'],
-    '#description' => t('The sync option controls whether the slide transitions occur simultaneously. The default is yes which means that the current slide transitions out as the next slide transitions in. By setting the sync option to no you can get some interesting twists on your transitions.'),  
+    '#description' => t('The sync option controls whether the slide transitions occur simultaneously. The default is yes which means that the current slide transitions out as the next slide transitions in. By setting the sync option to no you can get some interesting twists on your transitions.'),
   );
   $form['views_slideshow_thumbnailhover']['nowrap'] = array(
     '#type' => 'select',
     '#title' => t('End slideshow after last slide'),
     '#options' => array(1 => t('Yes'), 0 => t('No')),
     '#default_value' => $view->options['views_slideshow_thumbnailhover']['nowrap'],
-    '#description' => t('If you select yes the slideshow will end when it gets to the last slide.'),  
+    '#description' => t('If you select yes the slideshow will end when it gets to the last slide.'),
   );
   $form['views_slideshow_thumbnailhover']['advanced'] = array(
     '#type' => 'textarea',
