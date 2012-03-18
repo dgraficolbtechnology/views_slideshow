@@ -18,6 +18,7 @@ function views_slideshow_views_plugins() {
         'theme' => 'views_slideshow',
         'uses options' => TRUE,
         'uses row plugin' => TRUE,
+        'uses grouping' => FALSE,
         'type' => 'normal',
         'parent' => 'list',
       ),
