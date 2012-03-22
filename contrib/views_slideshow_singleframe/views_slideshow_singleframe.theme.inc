@@ -14,7 +14,7 @@ function template_preprocess_views_slideshow_singleframe(&$vars) {
   $view = $vars['view'];
   $vss_id = $view->name . '-' . $view->current_display;
   $settings = $options['views_slideshow_singleframe'];
-  
+
   // Cast the strings into int or bool as necessary.
   $new_settings = array();
   foreach ($settings as $key => $value) {
@@ -31,7 +31,7 @@ function template_preprocess_views_slideshow_singleframe(&$vars) {
         $value = FALSE;
       }
     }
-    
+
     $new_settings[$key] = $value;
   }
 
@@ -61,7 +61,7 @@ function template_preprocess_views_slideshow_singleframe(&$vars) {
 
   if ($slideshow_count > 1) {
     $vss_id .= '-' . $slideshow_count;
-    $settings['vss_id'] = $vss_id;  
+    $settings['vss_id'] = $vss_id;
   }
 
   drupal_add_js(array('viewsSlideshowSingleFrame' => array('#views_slideshow_singleframe_main_' . $vss_id => $settings)), 'setting');
@@ -91,7 +91,7 @@ function template_preprocess_views_slideshow_singleframe(&$vars) {
   elseif ($singleframe['pager'] == 2) {
     $vars['pager_bottom'] = theme('views_slideshow_singleframe_pager', $vss_id, $view, $options);
   }
-  
+
   $vars['image_count_top'] = '';
   $vars['image_count_bottom'] = '';
   if ($singleframe['image_count'] == 1) {
@@ -118,14 +118,14 @@ function theme_views_slideshow_singleframe_no_display_section($view, $rows, $vss
   else {
     $items_per_slide = 1;
   }
-  
+
   // Add the slideshow elements.
   $attributes['id'] = "views_slideshow_singleframe_teaser_section_" . $vss_id;
   $attributes['class'] = 'views_slideshow_singleframe_teaser_section';
   $attributes = drupal_attributes($attributes);
 
   $output = "<div$attributes>";
-  
+
   $items = array();
   $slideshow_count = 0;
   foreach ($rows as $count => $item) {
