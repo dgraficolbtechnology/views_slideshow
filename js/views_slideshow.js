@@ -260,11 +260,11 @@
           var mouseIn = function() {
             Drupal.viewsSlideshow.action({ "action": 'goToSlide', "slideshowID": uniqueID, "slideNum": index });
             Drupal.viewsSlideshow.action({ "action": 'pause', "slideshowID": uniqueID });
-          }
+          };
 
           var mouseOut = function() {
             Drupal.viewsSlideshow.action({ "action": 'play', "slideshowID": uniqueID });
-          }
+          };
 
           if (jQuery.fn.hoverIntent) {
             $(pagerItem).hoverIntent(mouseIn, mouseOut);
@@ -383,7 +383,7 @@
     var status = {
       'value': true,
       'text': ''
-    }
+    };
 
     // If an action isn't specified return false.
     if (typeof options.action == 'undefined' || options.action == '') {
