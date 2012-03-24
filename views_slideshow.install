@@ -1,0 +1,35 @@
+<?php
+
+/*
+* Implementation of hook_requirements
+*/
+function views_slideshow_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'install') {
+    // check that views is version 3, not 2
+    if (!function_exists('views_api_version')) {
+      $requirements['views'] = array(
+        'value' => t('Not Installed'),
+        'severity' => REQUIREMENT_ERROR,
+        'description' => t('Views Slideshow 3.x requires Views 3.x.  Views does not appear to be installed.'),
+      );
+    } else {
+      $views_ver = views_api_version();
+      if ($views_ver != "3.0") {
+        $requirements['views'] = array(
+          'title' => t('Views Version'),
+          'value' => t('%ver', array('%ver' => $views_ver)),
+          'severity' => REQUIREMENT_ERROR,
+          'description' => t('Views Slideshow 3.x requires Views 3.x.  Your version of Views does not match.'),
+        );
+      } else {
+        $requirements['views'] = array(
+          'value' => t('Installed'),
+          'severity' => REQUIREMENT_OK,
+        );
+      }
+    }
+    $requirements['views']['title'] = t('Views Module');
+  }
+  return $requirements;
+}
