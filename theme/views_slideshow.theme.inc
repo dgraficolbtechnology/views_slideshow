@@ -150,7 +150,7 @@ function _views_slideshow_preprocess_views_slideshow(&$vars) {
       foreach ($order as $order_num => $widgets) {
         if (is_array($widgets)) {
           foreach ($widgets as $widget_id) {
-            $vars[$widget_id . '_' . $location] = theme($widget_id . '_widget_render', $vss_id, $view, $options['widgets'][$location][$widget_id], $location, $rows);
+            $vars[$widget_id . '_' . $location] = theme(views_theme_functions($widget_id . '_widget_render', $view, $view->display[$view->current_display]), $vss_id, $view, $options['widgets'][$location][$widget_id], $location, $rows);
             $vars[$location . '_widget_rendered'] .= $vars[$widget_id . '_' . $location];
           }
         }
@@ -160,8 +160,8 @@ function _views_slideshow_preprocess_views_slideshow(&$vars) {
     /**
      * Process Slideshow
      */
-    $slides = theme($main_frame_module . '_main_frame', $vss_id, $view, $settings, $rows);
-    $vars['slideshow'] = theme('views_slideshow_main_section', $vss_id, $slides, $main_frame_module);
+    $slides = theme(views_theme_functions($main_frame_module . '_main_frame', $view, $view->display[$view->current_display]), $vss_id, $view, $settings, $rows);
+    $vars['slideshow'] = theme(views_theme_functions('views_slideshow_main_section', $view, $view->display[$view->current_display]), $vss_id, $slides, $main_frame_module);
   }
 }
 
@@ -200,7 +200,7 @@ function theme_views_slideshow_pager_widget_render($vss_id, $view, $settings, $l
   // Create some attributes
   $attributes['class'] = 'widget_pager widget_pager_' . $location;
   $attributes['id'] = 'widget_pager_' . $location . '_' . $vss_id;
-  return theme($settings['type'], $vss_id, $view, $settings, $location, $attributes);
+  return theme(views_theme_functions($settings['type'], $view, $view->display[$view->current_display]), $vss_id, $view, $settings, $location, $attributes);
 }
 
 /**
@@ -243,10 +243,10 @@ function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
       $rendered_fields = '';
       foreach ($vars['settings']['views_slideshow_pager_fields_fields'] as $field => $use) {
         if ($use !== 0 && is_object($vars['view']->field[$field])) {
-          $rendered_fields .= theme('views_slideshow_pager_field_field', $vars['view'], $field, $count);
+          $rendered_fields .= theme(views_theme_functions('views_slideshow_pager_field_field', $vars['view'], $vars['view']->display[$vars['view']->current_display]), $vars['view'], $field, $count);
         }
       }
-      $vars['rendered_field_items'] .= theme('views_slideshow_pager_field_item', $vars['vss_id'], $rendered_fields, $count, $vars['location']);
+      $vars['rendered_field_items'] .= theme(views_theme_functions('views_slideshow_pager_field_item', $vars['view'], $vars['view']->display[$vars['view']->current_display]), $vars['vss_id'], $rendered_fields, $count, $vars['location']);
     }
   }
 }
@@ -291,7 +291,7 @@ function theme_views_slideshow_controls_widget_render($vss_id, $view, $settings,
 
   $output = '';
   if (empty($vars['settings']['hide_on_single_slide']) && count($rows) > 1) {
-    $output = theme($settings['type'], $vss_id, $view, $settings, $location, $rows);
+    $output = theme(views_theme_functions($settings['type'], $view, $view->display[$view->current_display]), $vss_id, $view, $settings, $location, $rows);
   }
 
   return $output;
@@ -309,11 +309,11 @@ function _views_slideshow_preprocess_views_slideshow_controls_text(&$vars) {
   $vars['attributes']['class'] = 'views_slideshow_controls_text';
   $vars['attributes']['id'] = "views_slideshow_controls_text_" . $vars['vss_id'];
 
-  $vars['rendered_control_previous'] = theme('views_slideshow_controls_text_previous', $vars['vss_id'], $vars['view'], $vars['settings']);
+  $vars['rendered_control_previous'] = theme(views_theme_functions('views_slideshow_controls_text_previous', $vars['view'], $vars['view']->display[$vars['view']->current_display]), $vars['vss_id'], $vars['view'], $vars['settings']);
 
-  $vars['rendered_control_pause'] = theme('views_slideshow_controls_text_pause', $vars['vss_id'], $vars['view'], $vars['settings']);
+  $vars['rendered_control_pause'] = theme(views_theme_functions('views_slideshow_controls_text_pause', $vars['view'], $vars['view']->display[$vars['view']->current_display]), $vars['vss_id'], $vars['view'], $vars['settings']);
 
-  $vars['rendered_control_next'] = theme('views_slideshow_controls_text_next', $vars['vss_id'], $vars['view'], $vars['settings']);
+  $vars['rendered_control_next'] = theme(views_theme_functions('views_slideshow_controls_text_next', $vars['view'], $vars['view']->display[$vars['view']->current_display]), $vars['vss_id'], $vars['view'], $vars['settings']);
 }
 
 /**
@@ -353,7 +353,7 @@ function _views_slideshow_preprocess_views_slideshow_controls_text_next(&$vars) 
  * @inggroup themeable
  */
 function theme_views_slideshow_slide_counter_widget_render($vss_id, $view, $settings, $location, $rows) {
-  return theme('views_slideshow_slide_counter', $vss_id, $view, $settings, $location, $rows);
+  return theme(views_theme_functions('views_slideshow_slide_counter', $view, $view->display[$view->current_display]), $vss_id, $view, $settings, $location, $rows);
 }
 
 /**
