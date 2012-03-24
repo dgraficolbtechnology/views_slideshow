@@ -103,11 +103,11 @@
         var mouseIn = function() {
           Drupal.viewsSlideshow.action({ "action": 'pause', "slideshowID": settings.slideshowId });
         }
-        
+
         var mouseOut = function() {
           Drupal.viewsSlideshow.action({ "action": 'play', "slideshowID": settings.slideshowId });
         }
-        
+
         if (jQuery.fn.hoverIntent) {
           $('#views_slideshow_cycle_teaser_section_' + settings.vss_id).hoverIntent(mouseIn, mouseOut);
         }
@@ -349,7 +349,7 @@
     else if (value.toLowerCase() == 'false') {
       value = false;
     }
-    
+
     return value;
   }
 
@@ -367,12 +367,12 @@
     // Make sure the slideshow isn't already loaded.
     if (!settings.loaded) {
       $(settings.targetId).cycle(settings.opts);
-  
+
       // Start Paused
       if (settings.start_paused) {
         Drupal.viewsSlideshow.action({ "action": 'pause', "slideshowID": settings.slideshowId, "force": true });
       }
-  
+
       // Pause if hidden.
       if (settings.pause_when_hidden) {
         var checkPause = function(settings) {
@@ -387,12 +387,12 @@
             Drupal.viewsSlideshow.action({ "action": 'pause', "slideshowID": settings.slideshowId });
           }
         }
-  
+
         // Check when scrolled.
         $(window).scroll(function() {
          checkPause(settings);
         });
-  
+
         // Check when the window is resized.
         $(window).resize(function() {
           checkPause(settings);
@@ -402,12 +402,22 @@
   };
 
   Drupal.viewsSlideshowCycle.pause = function (options) {
-    $('#views_slideshow_cycle_teaser_section_' + options.slideshowID).cycle('pause');
+    if (options.pause_in_middle && $.fn.pause) {
+      $('#views_slideshow_cycle_teaser_section_' + options.slideshowID).pause();
+    }
+    else {
+      $('#views_slideshow_cycle_teaser_section_' + options.slideshowID).cycle('pause');
+    }
   };
 
   Drupal.viewsSlideshowCycle.play = function (options) {
     Drupal.settings.viewsSlideshowCycle['#views_slideshow_cycle_main_' + options.slideshowID].paused = false;
-    $('#views_slideshow_cycle_teaser_section_' + options.slideshowID).cycle('resume');
+    if (options.pause_in_middle && $.fn.resume) {
+      $('#views_slideshow_cycle_teaser_section_' + options.slideshowID).resume();
+    }
+    else {
+      $('#views_slideshow_cycle_teaser_section_' + options.slideshowID).cycle('resume');
+    }
   };
 
   Drupal.viewsSlideshowCycle.previousSlide = function (options) {
