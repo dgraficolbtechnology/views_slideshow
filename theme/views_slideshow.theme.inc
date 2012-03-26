@@ -261,9 +261,6 @@ function _views_slideshow_preprocess_views_slideshow_pager_field_item(&$vars) {
   $classes = array(
     'views_slideshow_pager_field_item',
   );
-  if (!$vars['count']) {
-    $classes[] = 'views_slideshow_active_pager_field_item';
-  }
   $classes[] = ($vars['count'] % 2) ? 'views-row-even' : 'views-row-odd';
 
   $vars['attributes']['class'] = implode(' ', $classes);
