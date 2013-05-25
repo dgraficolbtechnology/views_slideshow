@@ -169,20 +169,18 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row(
 
   $vars['rendered_items'] = '';
   foreach ($vars['items'] as $item_count => $item) {
-    $vars['rendered_items'] .= theme(views_theme_functions('views_slideshow_cycle_main_frame_row_item', $vars['view'], $vars['view']->display[$vars['view']->current_display]), $item, $item_count, $vars['count'], $vars['view']);
+    $vars['rendered_items'] .= theme(views_theme_functions('views_slideshow_cycle_main_frame_row_item', $vars['view'], $vars['view']->display[$vars['view']->current_display]), $item, $item_count, $vars['count'], $vars['view'], count($vars['view']->result));
   }
 }
 
 function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row_item(&$vars) {
-  $classes = array('views-row views-row-' . $vars['item_count']);
-  if (!$vars['item_count']) {
+  $classes = array('views-row views-row-' . $vars['count']);
+  $classes[] = ($vars['count'] % 2) ? 'views-row-even' : 'views-row-odd';
+  if ($vars['count'] == 0) {
     $classes[] = 'views-row-first';
   }
-  if ($vars['item_count'] % 2) {
-    $classes[] = 'views-row-even';
-  }
-  else {
-    $classes[] = 'views-row-odd';
+  elseif ($vars['count'] == $vars['length'] - 1) {
+    $classes[] = 'views-row-last';
   }
 
   /**
