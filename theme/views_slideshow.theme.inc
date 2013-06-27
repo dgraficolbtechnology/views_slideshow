@@ -293,7 +293,7 @@ function theme_views_slideshow_controls_widget_render($vss_id, $view, $settings,
   drupal_add_js($js_vars, 'setting');
 
   $output = '';
-  if (empty($vars['settings']['hide_on_single_slide']) && count($rows) > 1) {
+  if (empty($vars['settings']['hide_on_single_slide']) || count($rows) > 1) {
     $output = theme(views_theme_functions($settings['type'], $view, $view->display[$view->current_display]), $vss_id, $view, $settings, $location, $rows);
   }
 
