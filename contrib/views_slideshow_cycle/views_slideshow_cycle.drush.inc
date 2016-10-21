@@ -10,46 +10,46 @@
  * Implements hook_drush_command().
  */
 function views_slideshow_cycle_drush_command() {
-  $items = [];
+  $items = array();
 
   // The key in the $items array is the name of the command.
-  $items['views-slideshow-cycle-cycle'] = [
+  $items['views-slideshow-cycle-cycle'] = array(
     'description' => dt('Download and install the jQuery Cycle library.'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
-    'arguments' => [
+    'arguments' => array(
       'path' => dt('Optional. The path to install the jQuery Cycle library in. If omitted Drush will use the default location.'),
-    ],
-    'aliases' => ['dl-cycle'],
-  ];
-  $items['views-slideshow-cycle-json2'] = [
+    ),
+    'aliases' => array('dl-cycle'),
+  );
+  $items['views-slideshow-cycle-json2'] = array(
     'description' => dt('Download and install the JSON2 library.'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
-    'arguments' => [
+    'arguments' => array(
       'path' => dt('Optional. The path to install the JSON2 library in. If omitted Drush will use the default location.'),
-    ],
-    'aliases' => ['dl-json2'],
-  ];
-  $items['views-slideshow-cycle-hoverintent'] = [
+    ),
+    'aliases' => array('dl-json2'),
+  );
+  $items['views-slideshow-cycle-hoverintent'] = array(
     'description' => dt('Download and install the jquery.hoverIntent library.'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
-    'arguments' => [
+    'arguments' => array(
       'path' => dt('Optional. The path to install the jquery.hoverIntent library in. If omitted Drush will use the default location.'),
-    ],
-    'aliases' => ['dl-hoverintent'],
-  ];
-  $items['views-slideshow-cycle-pause'] = [
+    ),
+    'aliases' => array('dl-hoverintent'),
+  );
+  $items['views-slideshow-cycle-pause'] = array(
     'description' => dt('Download and install the jQuery.pause library.'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
-    'arguments' => [
+    'arguments' => array(
       'path' => dt('Optional. The path to install the jQuery.pause library in. If omitted Drush will use the default location.'),
-    ],
-    'aliases' => ['dl-pause'],
-  ];
-  $items['views-slideshow-cycle-lib'] = [
+    ),
+    'aliases' => array('dl-pause'),
+  );
+  $items['views-slideshow-cycle-lib'] = array(
     'description' => dt('Download and install the jQuery Cycle, jQuery hoverIntent and JSON2 libraries.'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
-    'aliases' => ['dl-cycle-lib'],
-  ];
+    'aliases' => array('dl-cycle-lib'),
+  );
   return $items;
 }
 
@@ -159,7 +159,7 @@ function _drush_views_slideshow_cycle_install_library($name, $path, $filename, $
   // Create the path if it does not exist.
   if (!is_dir($path)) {
     drush_op('mkdir', $path, 0755, TRUE);
-    drush_log(dt('Directory @path was created', ['@path' => $path]), 'success');
+    drush_log(dt('Directory @path was created', array('@path' => $path)), 'success');
   }
 
   // Be sure we can write in the directory.
@@ -172,21 +172,21 @@ function _drush_views_slideshow_cycle_install_library($name, $path, $filename, $
 
   // Download the JavaScript file.
   if (is_file($path . '/' . $filename)) {
-    drush_log(dt('@name appears to be already installed.', [
+    drush_log(dt('@name appears to be already installed.', array(
       '@name' => $name,
-    ]), 'ok');
+    )), 'ok');
   }
   elseif (drush_op('chdir', $path) && drush_shell_exec('wget --no-check-certificate ' . $url)) {
-    drush_log(dt('The latest version of @name has been downloaded to @path', [
+    drush_log(dt('The latest version of @name has been downloaded to @path', array(
       '@name' => $name,
       '@path' => $path,
-    ]), 'success');
+    )), 'success');
   }
   else {
-    drush_log(dt('Drush was unable to download the @name library to @path', [
+    drush_log(dt('Drush was unable to download the @name library to @path', array(
       '@name' => $name,
       '@path' => $path,
-    ]), 'error');
+    )), 'error');
   }
 
   chdir($dir);
