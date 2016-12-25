@@ -186,7 +186,7 @@ function theme_views_slideshow_pager_widget_render($vars) {
     return '';
   }
 
-  // Add javascript settings for the pager type.
+  // Add JavaScript settings for the pager type.
   $js_vars = array(
     'viewsSlideshowPager' => array(
       $vars['vss_id'] => array(
@@ -210,7 +210,7 @@ function theme_views_slideshow_pager_widget_render($vars) {
  * Theme pager fields
  */
 function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
-  // Build our javascript settings.
+  // Build our JavaScript settings.
   $js_vars = array(
     'viewsSlideshowPagerFields' => array(
       $vars['vss_id'] => array(
@@ -279,7 +279,7 @@ function _views_slideshow_preprocess_views_slideshow_pager_field_item(&$vars) {
  * @inggroup themeable
  */
 function theme_views_slideshow_controls_widget_render($vars) {
-  // Add javascript settings for the controls type.
+  // Add JavaScript settings for the controls type.
   $js_vars = array(
     'viewsSlideshowControls' => array(
       $vars['vss_id'] => array(
