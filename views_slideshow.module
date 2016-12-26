@@ -179,7 +179,7 @@ function views_slideshow_pager_views_slideshow_widget_form_options(&$form, &$for
 
   if (!empty($pagers)) {
     $pager_options = array();
-    foreach($pagers as $pager_id => $pager_info) {
+    foreach ($pagers as $pager_id => $pager_info) {
       $pager_options[$pager_id] = $pager_info['name'];
     }
     asort($pager_options);
@@ -343,7 +343,7 @@ function views_slideshow_controls_views_slideshow_widget_form_options(&$form, &$
 
   if (!empty($controls)) {
     $control_type_options = array();
-    foreach($controls as $control_id => $control_info) {
+    foreach ($controls as $control_id => $control_info) {
       $control_type_options[$control_id] = $control_info['name'];
     }
     asort($control_type_options);

@@ -173,7 +173,7 @@ function _views_slideshow_preprocess_views_slideshow(&$vars) {
  * @ingroup themeable
  */
 function theme_views_slideshow_main_section($vars) {
-  return '<div id="' . $vars['plugin'] . '_main_' . $vars['vss_id'] . '" class="' .  $vars['plugin'] . '_main views_slideshow_main">' . $vars['slides'] . '</div>';
+  return '<div id="' . $vars['plugin'] . '_main_' . $vars['vss_id'] . '" class="' . $vars['plugin'] . '_main views_slideshow_main">' . $vars['slides'] . '</div>';
 }
 
 /**
