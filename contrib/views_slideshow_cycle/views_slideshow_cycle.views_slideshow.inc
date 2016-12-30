@@ -99,7 +99,8 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
     'cover' => 'cover',
     'curtainX' => 'curtainX',
     'curtainY' => 'curtainY',
-    'fade' => 'fade',
+    'fade' => 'fade',    
+    'fadeout' => 'fadeout'
     'fadeZoom' => 'fadeZoom',
     'growX' => 'growX',
     'growY' => 'growY',
