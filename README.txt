@@ -68,6 +68,12 @@ jQuery slideshow.
 
 Settings are available for fade, timing, mode, and more.
 
+Known Issues
+============
+
+* Do not use the block cache for Views Slideshow blocks as this may prevent the
+JavaScript from being added to the page. See https://www.drupal.org/node/1460766
+and https://www.drupal.org/node/2448157.
 
 Authors/maintainers
 ===================
@@ -77,7 +83,7 @@ Original Author:
 Aaron Winborn (winborn at advomatic dot com)
 http://drupal.org/user/33420
 
-Co-maintainers:
+-maintainers:
 
 redndahead
 http://drupal.org/user/160320
