@@ -127,7 +127,7 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
     '#title' => t('Effect'),
     '#options' => $effects,
     '#default_value' => $view->options['views_slideshow_cycle']['effect'],
-    '#description' => t('The transition effect that will be used to change between images. Not all options below may be relevant depending on the effect. ' . l('Follow this link to see examples of each effect.', 'http://jquery.malsup.com/cycle/browser.html', array('attributes' => array('target' => '_blank')))),
+    '#description' => t('The transition effect that will be used to change between images. Not all options below may be relevant depending on the effect. !link', array('!link' => l(t('Follow this link to see examples of each effect.'), 'http://jquery.malsup.com/cycle/browser.html', array('attributes' => array('target' => '_blank'))))),
   );
 
   // Transition advanced options

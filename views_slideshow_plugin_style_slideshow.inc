@@ -109,7 +109,7 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style {
     }
     else {
       $form['enable_module'] = array(
-        '#markup' => t('There is no Views Slideshow plugin enabled. Go to the !modules and enable a Views Slideshow plugin module. For example Views Slideshow: Cycle.', array('!modules' => l('Modules Page', 'admin/modules'))),
+        '#markup' => t('There is no Views Slideshow plugin enabled. Go to the !modules and enable a Views Slideshow plugin module. For example Views Slideshow: Cycle.', array('!modules' => l(t('Modules Page'), 'admin/modules'))),
       );
     }
 
@@ -180,7 +180,7 @@ class views_slideshow_plugin_style_slideshow extends views_plugin_style {
           // Use Widget Checkbox
           $form['widgets'][$location_id][$widget_id]['enable'] = array(
             '#type' => 'checkbox',
-            '#title' => t($widget_info['name']),
+            '#title' => $widget_info['name'],
             '#default_value' => $this->options['widgets'][$location_id][$widget_id]['enable'],
             '#description' => t('Should !name be rendered at the !location of the slides.', array('!name' => $widget_info['name'], '!location' => $location_name)),
           );
