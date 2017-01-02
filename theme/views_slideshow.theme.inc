@@ -7,6 +7,9 @@
  * This just adds a wrapper div to the slideshow.
  */
 
+/**
+ * Implements hook_preprocess_views_slideshow().
+ */
 function _views_slideshow_preprocess_views_slideshow(&$vars) {
   $options = $vars['options'];
   $vars['skin'] = 'default';
@@ -83,15 +86,13 @@ function _views_slideshow_preprocess_views_slideshow(&$vars) {
         $vss_id => array(
           'methods' => $methods,
           'paused' => 0,
-        )
-      )
+        ),
+      ),
     );
     drupal_add_library('views_slideshow', 'views_slideshow');
     drupal_add_js($js_settings, 'setting');
 
-    /**
-     * Process Skins
-     */
+    // Process Skins.
     $skin_info = array();
     if (isset($options['skin_info'])) {
       $skin_info = $options['skin_info'];
@@ -121,11 +122,8 @@ function _views_slideshow_preprocess_views_slideshow(&$vars) {
       }
     }
 
-    /**
-     * Process Widgets
-     */
-
-    // Build weights
+    // Process Widgets.
+    // Build weights.
     for ($i = 1; $i <= count($widgets); $i++) {
       $weight['top'][$i] = array();
       $weight['bottom'][$i] = array();
@@ -144,24 +142,37 @@ function _views_slideshow_preprocess_views_slideshow(&$vars) {
       }
     }
 
-    // Build our widgets
+    // Build our widgets.
     foreach ($weight as $location => $order) {
       $vars[$location . '_widget_rendered'] = '';
       foreach ($order as $order_num => $widgets) {
         if (is_array($widgets)) {
           foreach ($widgets as $widget_id) {
-            $vars[$widget_id . '_' . $location] = theme(views_theme_functions($widget_id . '_widget_render', $view, $view->display[$view->current_display]), array('vss_id' => $vss_id, 'view' => $view, 'settings' => $options['widgets'][$location][$widget_id], 'location' => $location, 'rows' => $rows));
+            $vars[$widget_id . '_' . $location] = theme(views_theme_functions($widget_id . '_widget_render', $view, $view->display[$view->current_display]), array(
+              'vss_id' => $vss_id,
+              'view' => $view,
+              'settings' => $options['widgets'][$location][$widget_id],
+              'location' => $location,
+              'rows' => $rows,
+            ));
             $vars[$location . '_widget_rendered'] .= $vars[$widget_id . '_' . $location];
           }
         }
       }
     }
 
-    /**
-     * Process Slideshow
-     */
-    $slides = theme(views_theme_functions($main_frame_module . '_main_frame', $view, $view->display[$view->current_display]), array('vss_id' => $vss_id, 'view' => $view, 'settings' => $settings, 'rows' => $rows));
-    $vars['slideshow'] = theme(views_theme_functions('views_slideshow_main_section', $view, $view->display[$view->current_display]), array('vss_id' => $vss_id, 'slides' => $slides, 'plugin' => $main_frame_module));
+    // Process Slideshow.
+    $slides = theme(views_theme_functions($main_frame_module . '_main_frame', $view, $view->display[$view->current_display]), array(
+      'vss_id' => $vss_id,
+      'view' => $view,
+      'settings' => $settings,
+      'rows' => $rows,
+    ));
+    $vars['slideshow'] = theme(views_theme_functions('views_slideshow_main_section', $view, $view->display[$view->current_display]), array(
+      'vss_id' => $vss_id,
+      'slides' => $slides,
+      'plugin' => $main_frame_module,
+    ));
   }
 }
 
@@ -189,7 +200,7 @@ function theme_views_slideshow_pager_widget_render($vars) {
     'viewsSlideshowPager' => array(
       $vars['vss_id'] => array(
         $vars['location'] => array(
-          'type' => views_slideshow_format_addons_name($vars['settings']['type'])
+          'type' => views_slideshow_format_addons_name($vars['settings']['type']),
         ),
       ),
     ),
@@ -198,14 +209,20 @@ function theme_views_slideshow_pager_widget_render($vars) {
   drupal_add_library('views_slideshow', 'views_slideshow');
   drupal_add_js($js_vars, 'setting');
 
-  // Create some attributes
+  // Create some attributes.
   $attributes['class'] = 'widget_pager widget_pager_' . $vars['location'];
   $attributes['id'] = 'widget_pager_' . $vars['location'] . '_' . $vars['vss_id'];
-  return theme(views_theme_functions($vars['settings']['type'], $vars['view'], $vars['view']->display[$vars['view']->current_display]), array('vss_id' => $vars['vss_id'], 'view' => $vars['view'], 'settings' => $vars['settings'], 'location' => $vars['location'], 'attributes' => $attributes));
+  return theme(views_theme_functions($vars['settings']['type'], $vars['view'], $vars['view']->display[$vars['view']->current_display]), array(
+    'vss_id' => $vars['vss_id'],
+    'view' => $vars['view'],
+    'settings' => $vars['settings']
+    , 'location' => $vars['location'],
+    'attributes' => $attributes,
+  ));
 }
 
 /**
- * Theme pager fields
+ * Theme pager fields.
  */
 function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
   // Build our JavaScript settings.
@@ -223,10 +240,10 @@ function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
   drupal_add_library('views_slideshow', 'views_slideshow');
   drupal_add_js($js_vars, 'setting');
 
-  // Add hover intent library
+  // Add hover intent library.
   if ($vars['settings']['views_slideshow_pager_fields_hover']) {
     if (module_exists('libraries')) {
-      // Load jQuery hoverIntent
+      // Load jQuery hoverIntent.
       $hoverIntent_path = libraries_get_path('jquery.hoverIntent');
       if (!empty($hoverIntent_path) && file_exists($hoverIntent_path . '/jquery.hoverIntent.js')) {
         drupal_add_js($hoverIntent_path . '/jquery.hoverIntent.js');
@@ -247,10 +264,20 @@ function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
       $rendered_fields = '';
       foreach ($vars['settings']['views_slideshow_pager_fields_fields'] as $field => $use) {
         if ($use !== 0 && is_object($vars['view']->field[$field])) {
-          $rendered_fields .= theme(views_theme_functions('views_slideshow_pager_field_field', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array('view' => $vars['view'], 'field' => $field, 'count' => $count));
+          $rendered_fields .= theme(views_theme_functions('views_slideshow_pager_field_field', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array(
+            'view' => $vars['view'],
+            'field' => $field,
+            'count' => $count,
+          ));
         }
       }
-      $vars['rendered_field_items'] .= theme(views_theme_functions('views_slideshow_pager_field_item', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array('vss_id' => $vars['vss_id'], 'item' => $rendered_fields, 'count' => $count, 'location' => $vars['location'], 'length' => count($vars['view']->result)));
+      $vars['rendered_field_items'] .= theme(views_theme_functions('views_slideshow_pager_field_item', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array(
+        'vss_id' => $vars['vss_id'],
+        'item' => $rendered_fields,
+        'count' => $count,
+        'location' => $vars['location'],
+        'length' => count($vars['view']->result),
+      ));
     }
   }
 }
@@ -282,7 +309,7 @@ function theme_views_slideshow_controls_widget_render($vars) {
     'viewsSlideshowControls' => array(
       $vars['vss_id'] => array(
         $vars['location'] => array(
-          'type' => views_slideshow_format_addons_name($vars['settings']['type'])
+          'type' => views_slideshow_format_addons_name($vars['settings']['type']),
         ),
       ),
     ),
@@ -293,7 +320,13 @@ function theme_views_slideshow_controls_widget_render($vars) {
 
   $output = '';
   if (empty($vars['settings']['hide_on_single_slide']) || count($vars['rows']) > $vars['view']->style_options['views_slideshow_cycle']['items_per_slide']) {
-    $output = theme(views_theme_functions($vars['settings']['type'], $vars['view'], $vars['view']->display[$vars['view']->current_display]), array('vss_id' => $vars['vss_id'], 'view' => $vars['view'], 'settings' => $vars['settings'], 'location' => $vars['location'], 'rows' => $vars['rows']));
+    $output = theme(views_theme_functions($vars['settings']['type'], $vars['view'], $vars['view']->display[$vars['view']->current_display]), array(
+      'vss_id' => $vars['vss_id'],
+      'view' => $vars['view'],
+      'settings' => $vars['settings'],
+      'location' => $vars['location'],
+      'rows' => $vars['rows'],
+    ));
   }
 
   return $output;
@@ -310,11 +343,23 @@ function _views_slideshow_preprocess_views_slideshow_controls_text(&$vars) {
 
   $vars['classes_array'][] = 'views_slideshow_controls_text';
 
-  $vars['rendered_control_previous'] = theme(views_theme_functions('views_slideshow_controls_text_previous', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array('vss_id' => $vars['vss_id'], 'view' => $vars['view'], 'settings' => $vars['settings']));
+  $vars['rendered_control_previous'] = theme(views_theme_functions('views_slideshow_controls_text_previous', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array(
+    'vss_id' => $vars['vss_id'],
+    'view' => $vars['view'],
+    'settings' => $vars['settings'],
+  ));
 
-  $vars['rendered_control_pause'] = theme(views_theme_functions('views_slideshow_controls_text_pause', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array('vss_id' => $vars['vss_id'], 'view' => $vars['view'], 'settings' => $vars['settings']));
+  $vars['rendered_control_pause'] = theme(views_theme_functions('views_slideshow_controls_text_pause', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array(
+    'vss_id' => $vars['vss_id'],
+    'view' => $vars['view'],
+    'settings' => $vars['settings'],
+  ));
 
-  $vars['rendered_control_next'] = theme(views_theme_functions('views_slideshow_controls_text_next', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array('vss_id' => $vars['vss_id'], 'view' => $vars['view'], 'settings' => $vars['settings']));
+  $vars['rendered_control_next'] = theme(views_theme_functions('views_slideshow_controls_text_next', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array(
+    'vss_id' => $vars['vss_id'],
+    'view' => $vars['view'],
+    'settings' => $vars['settings'],
+  ));
 }
 
 /**
@@ -332,7 +377,7 @@ function _views_slideshow_preprocess_views_slideshow_controls_text_previous(&$va
  * @ingroup themeable
  */
 function _views_slideshow_preprocess_views_slideshow_controls_text_pause(&$vars) {
-  $vars['classes_array'][]  = 'views_slideshow_controls_text_pause  views-slideshow-controls-text-status-play';
+  $vars['classes_array'][] = 'views_slideshow_controls_text_pause  views-slideshow-controls-text-status-play';
   $vars['start_text'] = t('Pause');
 }
 
@@ -351,7 +396,13 @@ function _views_slideshow_preprocess_views_slideshow_controls_text_next(&$vars) 
  * @inggroup themeable
  */
 function theme_views_slideshow_slide_counter_widget_render($vars) {
-  return theme(views_theme_functions('views_slideshow_slide_counter', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array('vss_id' => $vars['vss_id'], 'view' => $vars['view'], 'settings' => $vars['settings'], 'location' => $vars['location'], 'rows' => $vars['rows']));
+  return theme(views_theme_functions('views_slideshow_slide_counter', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array(
+    'vss_id' => $vars['vss_id'],
+    'view' => $vars['view'],
+    'settings' => $vars['settings'],
+    'location' => $vars['location'],
+    'rows' => $vars['rows'],
+  ));
 }
 
 /**
