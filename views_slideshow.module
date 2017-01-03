@@ -35,6 +35,7 @@ function views_slideshow_theme($existing, $type, $theme, $path) {
         'attributes' => array(),
       ),
       'template' => 'theme/views-slideshow-pager-fields',
+      'file' => 'theme/views_slideshow.theme.inc',
       'pattern' => 'views_slideshow_pager_fields__',
     ),
     'views_slideshow_pager_field_field' => array(
@@ -52,6 +53,7 @@ function views_slideshow_theme($existing, $type, $theme, $path) {
         'length' => NULL,
       ),
       'template' => 'theme/views-slideshow-pager-field-item',
+      'file' => 'theme/views_slideshow.theme.inc',
       'pattern' => 'views_slideshow_pager_field_item__',
     ),
     'views_slideshow_controls_widget_render' => array(
@@ -74,6 +76,7 @@ function views_slideshow_theme($existing, $type, $theme, $path) {
         'rows' => array(),
       ),
       'template' => 'theme/views-slideshow-controls-text',
+      'file' => 'theme/views_slideshow.theme.inc',
       'pattern' => 'views_slideshow_controls_text__',
     ),
     'views_slideshow_controls_text_previous' => array(
@@ -83,6 +86,7 @@ function views_slideshow_theme($existing, $type, $theme, $path) {
         'settings' => array(),
       ),
       'template' => 'theme/views-slideshow-controls-text-previous',
+      'file' => 'theme/views_slideshow.theme.inc',
       'pattern' => 'views_slideshow_controls_text_previous__',
     ),
     'views_slideshow_controls_text_pause' => array(
@@ -92,6 +96,7 @@ function views_slideshow_theme($existing, $type, $theme, $path) {
         'settings' => array(),
       ),
       'template' => 'theme/views-slideshow-controls-text-pause',
+      'file' => 'theme/views_slideshow.theme.inc',
       'pattern' => 'views_slideshow_controls_text_pause__',
     ),
     'views_slideshow_controls_text_next' => array(
@@ -101,6 +106,7 @@ function views_slideshow_theme($existing, $type, $theme, $path) {
         'settings' => array(),
       ),
       'template' => 'theme/views-slideshow-controls-text-next',
+      'file' => 'theme/views_slideshow.theme.inc',
       'pattern' => 'views_slideshow_controls_text_next__',
     ),
     'views_slideshow_slide_counter_widget_render' => array(
@@ -123,6 +129,7 @@ function views_slideshow_theme($existing, $type, $theme, $path) {
         'rows' => array(),
       ),
       'template' => 'theme/views-slideshow-slide-counter',
+      'file' => 'theme/views_slideshow.theme.inc',
       'pattern' => 'views_slideshow_slide_counter__',
     ),
   );
@@ -520,73 +527,4 @@ function views_slideshow_views_slideshow_option_definition() {
   }
 
   return $options;
-}
-
-/**
- * Pass preprocess functions to views_slideshow.theme.inc file.
- *
- * Need to have preprocess functions here because Drupal doesn't cache them
- * correctly in the theme.inc file.
- *
- * If you would like to override the preprocess functions make sure to look at
- * the associated function in theme.inc.
- */
-
-// Trying to make sure the theme.inc get's loaded.
-module_load_include('inc', 'views_slideshow', 'theme/views_slideshow.theme');
-
-/**
- * Implements template_preprocess_views_slideshow().
- */
-function template_preprocess_views_slideshow(&$vars) {
-  _views_slideshow_preprocess_views_slideshow($vars);
-}
-
-/**
- * Implements template_preprocess_views_slideshow().
- */
-function template_preprocess_views_slideshow_pager_fields(&$vars) {
-  _views_slideshow_preprocess_views_slideshow_pager_fields($vars);
-}
-
-/**
- * Implements template_preprocess_views_slideshow().
- */
-function template_preprocess_views_slideshow_pager_field_item(&$vars) {
-  _views_slideshow_preprocess_views_slideshow_pager_field_item($vars);
-}
-
-/**
- * Implements template_preprocess_views_slideshow().
- */
-function template_preprocess_views_slideshow_controls_text(&$vars) {
-  _views_slideshow_preprocess_views_slideshow_controls_text($vars);
-}
-
-/**
- * Implements template_preprocess_views_slideshow().
- */
-function template_preprocess_views_slideshow_controls_text_previous(&$vars) {
-  _views_slideshow_preprocess_views_slideshow_controls_text_previous($vars);
-}
-
-/**
- * Implements template_preprocess_views_slideshow().
- */
-function template_preprocess_views_slideshow_controls_text_pause(&$vars) {
-  _views_slideshow_preprocess_views_slideshow_controls_text_pause($vars);
-}
-
-/**
- * Implements template_preprocess_views_slideshow().
- */
-function template_preprocess_views_slideshow_controls_text_next(&$vars) {
-  _views_slideshow_preprocess_views_slideshow_controls_text_next($vars);
-}
-
-/**
- * Implements template_preprocess_views_slideshow().
- */
-function template_preprocess_views_slideshow_slide_counter(&$vars) {
-  _views_slideshow_preprocess_views_slideshow_slide_counter($vars);
 }

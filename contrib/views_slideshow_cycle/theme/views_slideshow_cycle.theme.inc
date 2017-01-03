@@ -10,7 +10,7 @@
  *
  * @ingroup themeable
  */
-function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame(&$vars) {
+function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
   $settings = $vars['settings'];
   $rows = $vars['rows'];
   $view = $vars['view'];
@@ -157,7 +157,7 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame(&$va
  *
  * @ingroup themeable
  */
-function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row(&$vars) {
+function template_preprocess_views_slideshow_cycle_main_frame_row(&$vars) {
   $current = $vars['count'] + 1;
   $vars['classes_array'][] = 'views_slideshow_cycle_slide';
   $vars['classes_array'][] = 'views_slideshow_slide views-row-' . $current;
@@ -182,7 +182,7 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row(
 /**
  * Implements hook_preprocess_views_slideshow_cycle_main_frame_row_item().
  */
-function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row_item(&$vars) {
+function template_preprocess_views_slideshow_cycle_main_frame_row_item(&$vars) {
   $vars['classes_array'][] = 'views-row views-row-' . $vars['count'];
   $vars['classes_array'][] = ($vars['count'] % 2) ? 'views-row-even' : 'views-row-odd';
   if ($vars['count'] == 0) {

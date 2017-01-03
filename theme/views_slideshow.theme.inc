@@ -10,7 +10,7 @@
 /**
  * Implements hook_preprocess_views_slideshow().
  */
-function _views_slideshow_preprocess_views_slideshow(&$vars) {
+function template_preprocess_views_slideshow(&$vars) {
   $options = $vars['options'];
   $vars['skin'] = 'default';
   $vars['slideshow'] = '';
@@ -224,7 +224,7 @@ function theme_views_slideshow_pager_widget_render($vars) {
 /**
  * Theme pager fields.
  */
-function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
+function template_preprocess_views_slideshow_pager_fields(&$vars) {
   // Build our JavaScript settings.
   $js_vars = array(
     'viewsSlideshowPagerFields' => array(
@@ -287,7 +287,7 @@ function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
  *
  * @ingroup themeable
  */
-function _views_slideshow_preprocess_views_slideshow_pager_field_item(&$vars) {
+function template_preprocess_views_slideshow_pager_field_item(&$vars) {
   $vars['classes_array'][] = 'views_slideshow_pager_field_item';
   $vars['classes_array'][] = ($vars['count'] % 2) ? 'views-row-even' : 'views-row-odd';
   if ($vars['count'] == 0) {
@@ -337,7 +337,7 @@ function theme_views_slideshow_controls_widget_render($vars) {
  *
  * @ingroup themeable
  */
-function _views_slideshow_preprocess_views_slideshow_controls_text(&$vars) {
+function template_preprocess_views_slideshow_controls_text(&$vars) {
   $module_path = drupal_get_path('module', 'views_slideshow');
   drupal_add_css($module_path . '/views_slideshow_controls_text.css', array('type' => 'file'));
 
@@ -367,7 +367,7 @@ function _views_slideshow_preprocess_views_slideshow_controls_text(&$vars) {
  *
  * @ingroup themeable
  */
-function _views_slideshow_preprocess_views_slideshow_controls_text_previous(&$vars) {
+function template_preprocess_views_slideshow_controls_text_previous(&$vars) {
   $vars['classes_array'][] = 'views_slideshow_controls_text_previous';
 }
 
@@ -376,7 +376,7 @@ function _views_slideshow_preprocess_views_slideshow_controls_text_previous(&$va
  *
  * @ingroup themeable
  */
-function _views_slideshow_preprocess_views_slideshow_controls_text_pause(&$vars) {
+function template_preprocess_views_slideshow_controls_text_pause(&$vars) {
   $vars['classes_array'][] = 'views_slideshow_controls_text_pause  views-slideshow-controls-text-status-play';
   $vars['start_text'] = t('Pause');
 }
@@ -386,7 +386,7 @@ function _views_slideshow_preprocess_views_slideshow_controls_text_pause(&$vars)
  *
  * @ingroup themeable
  */
-function _views_slideshow_preprocess_views_slideshow_controls_text_next(&$vars) {
+function template_preprocess_views_slideshow_controls_text_next(&$vars) {
   $vars['classes_array'][] = 'views_slideshow_controls_text_next';
 }
 
@@ -408,7 +408,7 @@ function theme_views_slideshow_slide_counter_widget_render($vars) {
 /**
  * Views Slideshow: slide counter.
  */
-function _views_slideshow_preprocess_views_slideshow_slide_counter(&$vars) {
+function template_preprocess_views_slideshow_slide_counter(&$vars) {
   $vars['classes_array'][] = 'views_slideshow_slide_counter';
   $vars['slide_count'] = count($vars['rows']);
 }
