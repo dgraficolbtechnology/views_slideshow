@@ -299,6 +299,22 @@ function template_preprocess_views_slideshow_pager_field_item(&$vars) {
 }
 
 /**
+ * Views Slideshow: pager field item field.
+ *
+ * @ingroup themeable
+ */
+function template_preprocess_views_slideshow_pager_field_field(&$vars) {
+  $view = $vars['view'];
+  $vars['field_item'] = $view->field[$vars['field']];
+  $vars['field_rendered'] = $view->style_plugin->rendered_fields[$vars['count']][$vars['field']];
+  $vars['css_id'] = drupal_clean_css_identifier($vars['field_item']->field);
+  if (!strstr($vars['field_rendered'], '<a')) {
+    $vars['field_rendered'] = "<a href='#slideshow-${vars['count']}'>${vars['field_rendered']}</a>";
+  }
+}
+
+
+/**
  * Views Slideshow: Controls.
  *
  * @inggroup themeable
