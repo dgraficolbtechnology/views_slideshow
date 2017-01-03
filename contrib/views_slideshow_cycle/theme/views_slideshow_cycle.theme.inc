@@ -229,6 +229,7 @@ function views_slideshow_cycle_preprocess_views_slideshow_pager_fields(&$vars) {
           'item' => $rendered_fields,
           'count' => $count,
           'location' => $vars['location'],
+          'view' => $vars['view'],
         ));
       }
     }
