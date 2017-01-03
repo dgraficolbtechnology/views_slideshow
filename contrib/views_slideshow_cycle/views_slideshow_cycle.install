@@ -51,7 +51,7 @@ function views_slideshow_cycle_requirements($phase) {
       }
       else {
         $requirements['views_slideshow_jquery_cycle'] = array(
-          'title' => t('jQuery Cycle Library');
+          'title' => t('jQuery Cycle Library'),
           'value' => t('Installed'),
           'severity' => REQUIREMENT_OK,
         );
