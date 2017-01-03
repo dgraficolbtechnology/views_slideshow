@@ -1,3 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Views Slideshow: Template for pager field - field.
+ *
+ * - $view: The view in use.
+ *
+ * @ingroup views_templates
+ */
+?>
 <div class="views-field-<?php print drupal_clean_css_identifier($view->field[$field]->field); ?>">
   <?php if ($view->field[$field]->label()) { ?>
     <label class="view-label-<?php print drupal_clean_css_identifier($view->field[$field]->field); ?>">
