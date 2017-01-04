@@ -82,15 +82,18 @@ Authors/maintainers
 Original Author:
 
 Aaron Winborn (winborn at advomatic dot com)
-http://drupal.org/user/33420
+https://drupal.org/user/33420
 
 -maintainers:
 
+NickWilde
+https://www.drupal.org/u/nickwilde
+
 redndahead
-http://drupal.org/user/160320
+https://drupal.org/user/160320
 
 psynaptic
-http://drupal.org/user/93429
+https://drupal.org/user/93429
 
 
 Support
@@ -98,4 +101,4 @@ Support
 
 Issues should be posted in the issue queue on drupal.org:
 
-http://drupal.org/project/issues/views_slideshow
+https://drupal.org/project/issues/views_slideshow
