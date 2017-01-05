@@ -365,7 +365,10 @@
   Drupal.viewsSlideshowCycle.advancedOptionCleanup = function(value) {
     value = $.trim(value);
     value = value.replace(/\n/g, '');
-    if (!isNaN(parseInt(value))) {
+    if (value.match(/^[\d.]+%$/)) {
+      // noop
+    }
+    else if (!isNaN(parseInt(value))) {
       value = parseInt(value);
     }
     else if (value.toLowerCase() == 'true') {
