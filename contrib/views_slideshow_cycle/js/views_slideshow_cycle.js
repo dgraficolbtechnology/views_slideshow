@@ -151,7 +151,6 @@
               case "fastOnEvent":
               case "fit":
               case "fx":
-              case "height":
               case "manualTrump":
               case "metaAttr":
               case "next":
@@ -175,10 +174,25 @@
               case "startingSlide":
               case "sync":
               case "timeout":
-              case "width":
                 var optionValue = advancedOptions[option];
                 optionValue = Drupal.viewsSlideshowCycle.advancedOptionCleanup(optionValue);
                 settings.opts[option] = optionValue;
+                break;
+
+              // If width is set we need to disable resizing.
+              case "width":
+                var optionValue = advancedOptions["width"];
+                optionValue = Drupal.viewsSlideshowCycle.advancedOptionCleanup(optionValue);
+                settings.opts["width"] = optionValue;
+                settings.opts["containerResize"] = 0;
+                break;
+
+              // If height is set we need to set fixed_height to true.
+              case "height":
+                var optionValue = advancedOptions["height"];
+                optionValue = Drupal.viewsSlideshowCycle.advancedOptionCleanup(optionValue);
+                settings.opts["height"] = optionValue;
+                settings.fixed_height = 1;
                 break;
 
               // These process options that look like {top:50, bottom:20}
