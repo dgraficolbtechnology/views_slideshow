@@ -69,7 +69,7 @@ function views_slideshow_cycle_help($path, $arg) {
       }
       else {
         $output = '<p>' . t('Views Slideshow Cycle help can be found by installing and enabling the !advanced_help', array(
-          '!advanced_help' => l(t('Advanced Help module'), 'http://drupal.org/project/advanced_help')),
+          '!advanced_help' => l(t('Advanced Help module'), 'http://drupal.org/project/advanced_help'))
         ) . '</p>';
       }
       return $output;
