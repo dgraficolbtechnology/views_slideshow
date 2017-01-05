@@ -289,7 +289,10 @@
                 var timeoutFnValue = advancedOptions[option];
                 timeoutFnValue = Drupal.viewsSlideshowCycle.advancedOptionCleanup(timeoutFnValue);
                 settings.opts[option] = function(currSlideElement, nextSlideElement, options, forwardFlag) {
+                  // Set a sane return value unless function overrides it.
+                  var returnVal = settings.timeout;
                   eval(timeoutFnValue);
+                  return returnVal;
                 }
                 break;
 
