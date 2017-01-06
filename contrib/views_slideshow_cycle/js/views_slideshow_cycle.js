@@ -197,7 +197,9 @@
 
               // These process options that look like {top:50, bottom:20}
               case "animIn":
+              case "animInDelay":
               case "animOut":
+              case "animOutDelay":
               case "cssBefore":
               case "cssAfter":
               case "shuffle":
