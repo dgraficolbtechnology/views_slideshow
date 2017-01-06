@@ -14,7 +14,7 @@
  */
 ?>
 <div class="views-field-<?php print $css_id; ?>">
-  <?php if ($field_item->label()) { ?>
+  <?php if (is_object($field_item) && $field_item->label()) { ?>
     <label class="view-label-<?php print $css_id; ?>">
       <?php print $field_item->label(); ?>:
     </label>
