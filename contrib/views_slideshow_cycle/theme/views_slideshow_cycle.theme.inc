@@ -174,7 +174,7 @@ function template_preprocess_views_slideshow_cycle_main_frame_row(&$vars) {
       'item_count' => $item_count,
       'count' => $vars['count'],
       'view' => $vars['view'],
-      'length' => count($vars['view']->result),
+      'length' => count($vars['item']),
     ));
   }
 }
@@ -183,8 +183,8 @@ function template_preprocess_views_slideshow_cycle_main_frame_row(&$vars) {
  * Implements hook_preprocess_views_slideshow_cycle_main_frame_row_item().
  */
 function template_preprocess_views_slideshow_cycle_main_frame_row_item(&$vars) {
-  $vars['classes_array'][] = 'views-row views-row-' . $vars['count'];
-  $vars['classes_array'][] = ($vars['count'] % 2) ? 'views-row-even' : 'views-row-odd';
+  $vars['classes_array'][] = 'views-row views-row-' . $vars['item_count'];
+  $vars['classes_array'][] = ($vars['item_count'] % 2) ? 'views-row-even' : 'views-row-odd';
   if ($vars['count'] == 0) {
     $vars['classes_array'][] = 'views-row-first';
   }
