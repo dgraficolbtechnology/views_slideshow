@@ -245,3 +245,30 @@ function views_slideshow_cycle_preprocess_views_slideshow_slide_counter(&$vars) 
     $vars['slide_count'] = ceil($vars['slide_count']);
   }
 }
+
+/**
+ * Backwards compatability wrapper.
+ *
+ * @see template_preprocess_views_slideshow_cycle_main_frame().
+ */
+function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame(&$vars) {
+  template_preprocess_views_slideshow_cycle_main_frame($vars);
+}
+
+/**
+ * Backwards compatability wrapper.
+ *
+ * @see template_preprocess_views_slideshow_cycle_main_frame_row().
+ */
+function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row(&$vars) {
+  template_preprocess_views_slideshow_cycle_main_frame_row($vars);
+}
+
+/**
+ * Backwards compatability wrapper.
+ *
+ * @see template_preprocess_views_slideshow_cycle_main_frame_row_item().
+ */
+function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row_item(&$vars) {
+  template_preprocess_views_slideshow_cycle_main_frame_row_item($vars);
+}
