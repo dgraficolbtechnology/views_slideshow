@@ -174,7 +174,7 @@ function template_preprocess_views_slideshow_cycle_main_frame_row(&$vars) {
       'item_count' => $item_count,
       'count' => $vars['count'],
       'view' => $vars['view'],
-      'length' => count($vars['item']),
+      'length' => count($vars['items']),
     ));
   }
 }
