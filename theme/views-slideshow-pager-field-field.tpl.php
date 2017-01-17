@@ -19,7 +19,7 @@
       <?php print $field_item->label(); ?>:
     </label>
   <?php } ?>
-  <div class="views-content-<?php $css_id; ?>">
+  <div class="views-content-<?php print $css_id; ?>">
     <?php print $field_rendered; ?>
   </div>
 </div>
