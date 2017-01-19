@@ -167,6 +167,7 @@ function template_preprocess_views_slideshow(&$vars) {
       'view' => $view,
       'settings' => $settings,
       'rows' => $rows,
+      'options' => $options,
     ));
     $vars['slideshow'] = theme(views_theme_functions('views_slideshow_main_section', $view, $view->display[$view->current_display]), array(
       'vss_id' => $vss_id,

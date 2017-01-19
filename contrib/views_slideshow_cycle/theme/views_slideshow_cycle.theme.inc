@@ -132,6 +132,16 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
 
   $vars['items_per_slide'] = $items_per_slide;
 
+  //drupal_set_message(var_export($vars['options']['widgets'],TRUE));
+  $widgets = $vars['options']['widgets'];
+  if (isset($options['top']['views_slideshow_pager']['enabled']) && $options['top']['views_slideshow_pager']['enabled']) {
+    $aria = "aria-labelledby='views_slideshow_pager_field_item_top_${vss_id}_";
+  }
+  else {
+    $aria = "aria-labelledby='views_slideshow_pager_field_item_bottom_${vss_id}_";
+  }
+
+
   $items = array();
   $slideshow_count = 0;
   $rendered_rows = '';
@@ -143,6 +153,7 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
         'items' => $items,
         'count' => $slideshow_count,
         'view' => $vars['view'],
+        'aria' => $aria . $slideshow_count . "'",
       ));
       $items = array();
       $slideshow_count++;
