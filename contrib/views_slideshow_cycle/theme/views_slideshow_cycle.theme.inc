@@ -80,6 +80,14 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
       drupal_add_js($json_path . '/json2.js');
     }
 
+    // Add jquery easing library.
+    if (strstr($settings['advanced_options'], '"eas')) {
+      $easing_path = libraries_get_path('jquery.easing');
+      if (!empty($easing_path) && file_exists($easing_path . '/jquery.easing.1.3.js')) {
+        drupal_add_js($easing_path . '/jquery.easing.1.3.js');
+      }
+    }
+
     // Load our cycle js.
     $module_path = drupal_get_path('module', 'views_slideshow_cycle');
     drupal_add_js($module_path . '/js/views_slideshow_cycle.js');
