@@ -80,6 +80,14 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
       drupal_add_js($json_path . '/json2.js');
     }
 
+    // Add hover intent library.
+    if ($settings['pause']) {
+      $hoverIntent_path = libraries_get_path('jquery.hoverIntent');
+      if (!empty($hoverIntent_path) && file_exists($hoverIntent_path . '/jquery.hoverIntent.js')) {
+        drupal_add_js($hoverIntent_path . '/jquery.hoverIntent.js');
+      }
+    }
+
     // Add jquery easing library.
     if (strstr($settings['advanced_options'], '"eas')) {
       $easing_path = libraries_get_path('jquery.easing');
@@ -102,17 +110,6 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
   drupal_add_css($module_path . '/views_slideshow_cycle.css', 'file');
 
   drupal_add_js(array('viewsSlideshowCycle' => array('#views_slideshow_cycle_main_' . $vss_id => $settings)), 'setting');
-
-  // Add hover intent library.
-  if ($settings['pause']) {
-    if (module_exists('libraries')) {
-      // Load jQuery hoverIntent.
-      $hoverIntent_path = libraries_get_path('jquery.hoverIntent');
-      if (!empty($hoverIntent_path) && file_exists($hoverIntent_path . '/jquery.hoverIntent.js')) {
-        drupal_add_js($hoverIntent_path . '/jquery.hoverIntent.js');
-      }
-    }
-  }
 
   // Add the slideshow elements.
   $vars['classes_array'][] = 'views_slideshow_cycle_teaser_section';
@@ -140,7 +137,6 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
 
   $vars['items_per_slide'] = $items_per_slide;
 
-  //drupal_set_message(var_export($vars['options']['widgets'],TRUE));
   $widgets = $vars['options']['widgets'];
   if (isset($options['top']['views_slideshow_pager']['enabled']) && $options['top']['views_slideshow_pager']['enabled']) {
     $aria = "aria-labelledby='views_slideshow_pager_field_item_top_${vss_id}_";
