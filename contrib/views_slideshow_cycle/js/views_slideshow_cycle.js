@@ -28,6 +28,10 @@
         }
         // Pager before function.
         var pager_before_fn = function(curr, next, opts) {
+          $(document).trigger('drupal:views_slideshow_cycle:before', {
+            curr: curr, next: next, opts: opts, settings: settings
+          });
+
           var slideNum = opts.nextSlide;
 
           // Remember last slide.
