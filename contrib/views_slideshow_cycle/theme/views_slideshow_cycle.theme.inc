@@ -149,6 +149,7 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
   $items = array();
   $slideshow_count = 0;
   $rendered_rows = '';
+  $last_slide = ceil(count($rows) / $items_per_slide);
   foreach ($rows as $count => $item) {
     $items[] = $item;
     if (count($items) == $items_per_slide || $count == (count($rows) - 1)) {
@@ -158,6 +159,7 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
         'count' => $slideshow_count,
         'view' => $vars['view'],
         'aria' => $aria . $slideshow_count . "'",
+        'last_slide' => $last_slide,
       ));
       $items = array();
       $slideshow_count++;
@@ -179,6 +181,12 @@ function template_preprocess_views_slideshow_cycle_main_frame_row(&$vars) {
 
   if ($vars['count']) {
     $vars['classes_array'][] = 'views_slideshow_cycle_hidden';
+    if ($current == $vars['last_slide']) {
+      $vars['classes_array'][] = 'views-row-last';
+    }
+  }
+  else {
+    $vars['classes_array'][] = 'views-row-first';
   }
   $vars['classes_array'][] = ($vars['count'] % 2) ? 'views-row-even' : 'views-row-odd';
 
