@@ -1,4 +1,3 @@
-
 /**
  *  @file
  *  A simple jQuery Cycle Div Slideshow Rotator.
@@ -23,6 +22,13 @@
           if (typeof settings.processedAfter == 'undefined' || !settings.processedAfter) {
             settings.processedAfter = 1;
             slideNum = (typeof settings.opts.startingSlide == 'undefined') ? 0 : settings.opts.startingSlide;
+          }
+          if (settings.pause_after_slideshow) {
+            opts.counter += 1;
+            if (opts.counter == settings.num_divs + 1) {
+              opts.counter = 1;
+              Drupal.viewsSlideshow.action({ "action": 'pause', "slideshowID": settings.slideshowId, "force": true });
+            }
           }
           Drupal.viewsSlideshow.action({ "action": 'transitionEnd', "slideshowID": settings.slideshowId, "slideNum": slideNum });
         }
@@ -64,6 +70,8 @@
           sync:settings.sync,
           random:settings.random,
           nowrap:settings.nowrap,
+          pause_after_slideshow:settings.pause_after_slideshow,
+          counter:0,
           after:pager_after_fn,
           before:pager_before_fn,
           cleartype:(settings.cleartype)? true : false,
@@ -124,7 +132,7 @@
             $('#views_slideshow_cycle_teaser_section_' + settings.vss_id).hover(mouseIn, mouseOut);
           }
         }
-        
+
         // Play on hover.
         if (settings.play_on_hover) {
           var mouseIn = function() {
