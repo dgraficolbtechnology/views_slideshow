@@ -458,7 +458,7 @@ function views_slideshow_cycle_views_slideshow_slideshow_type_form(&$form, &$for
   }
   else {
     $form['views_slideshow_cycle']['advanced_options_info'] = array(
-      '#markup' => '<p>' . t('You can find a list of all the available options at !url.  If one of the options you add uses a function, example fxFn, then you need to only enter what goes inside the function call. The variables that are in the !documentation on the jquery cycle site will be available to you.', array(
+      '#markup' => '<p>' . t('You can find a list of all the available options at !documentation.  If one of the options you add uses a function, example fxFn, then you need to only enter what goes inside the function call. The variables that are in the !documentation on the jquery cycle site will be available to you.', array(
         '!documentation' => l(t('documentation'), 'http://malsup.com/jquery/cycle/options.html'),
       )) . '</p>',
     );
