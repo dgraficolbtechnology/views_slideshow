@@ -13,6 +13,13 @@
   display: block;
 }
 
+.views-slideshow-cycle-main-frame,
+.views-slideshow-cycle-main-frame div,
+.views-slideshow-cycle-main-frame img {
+  max-width: 100%;
+}
+
+
 /* Pager Settings */
 
 .views-slideshow-pager-fields img {
