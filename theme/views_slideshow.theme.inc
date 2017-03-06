@@ -432,6 +432,8 @@ function template_preprocess_views_slideshow_slide_counter(&$vars) {
 /**
  * Backwards compatability wrapper.
  *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
+ *
  * @see template_preprocess_views_slideshow().
  */
 function _views_slideshow_preprocess_views_slideshow(&$vars) {
@@ -440,6 +442,8 @@ function _views_slideshow_preprocess_views_slideshow(&$vars) {
 
 /**
  * Backwards compatability wrapper.
+ *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
  *
  * @see template_preprocess_views_slideshow_pager_fields().
  */
@@ -450,6 +454,8 @@ function _views_slideshow_preprocess_views_slideshow_pager_fields(&$vars) {
 /**
  * Backwards compatability wrapper.
  *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
+ *
  * @see template_preprocess_views_slideshow_pager_field_item().
  */
 function _views_slideshow_preprocess_views_slideshow_pager_field_item(&$vars) {
@@ -458,6 +464,8 @@ function _views_slideshow_preprocess_views_slideshow_pager_field_item(&$vars) {
 
 /**
  * Backwards compatability wrapper.
+ *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
  *
  * @see template_preprocess_views_slideshow_controls_text().
  */
@@ -477,6 +485,8 @@ function _views_slideshow_preprocess_views_slideshow_controls_text_previous(&$va
 /**
  * Backwards compatability wrapper.
  *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
+ *
  * @see template_preprocess_views_slideshow_controls_text_pause().
  */
 function _views_slideshow_preprocess_views_slideshow_controls_text_pause(&$vars) {
@@ -486,6 +496,8 @@ function _views_slideshow_preprocess_views_slideshow_controls_text_pause(&$vars)
 /**
  * Backwards compatability wrapper.
  *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
+ *
  * @see template_preprocess_views_slideshow_controls_text_next().
  */
 function _views_slideshow_preprocess_views_slideshow_controls_text_next(&$vars) {
@@ -494,6 +506,8 @@ function _views_slideshow_preprocess_views_slideshow_controls_text_next(&$vars) 
 
 /**
  * Backwards compatability wrapper.
+ *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
  *
  * @see template_preprocess_views_slideshow_slide_counter().
  */

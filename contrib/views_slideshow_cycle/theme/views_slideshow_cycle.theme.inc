@@ -278,6 +278,8 @@ function views_slideshow_cycle_preprocess_views_slideshow_slide_counter(&$vars) 
 /**
  * Backwards compatability wrapper.
  *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
+ *
  * @see template_preprocess_views_slideshow_cycle_main_frame().
  *
  * @ingroup vss_theme
@@ -289,6 +291,8 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame(&$va
 /**
  * Backwards compatability wrapper.
  *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
+ *
  * @see template_preprocess_views_slideshow_cycle_main_frame_row().
  *
  * @ingroup vss_theme
@@ -299,6 +303,8 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row(
 
 /**
  * Backwards compatability wrapper.
+ *
+ * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
  *
  * @see template_preprocess_views_slideshow_cycle_main_frame_row_item().
  *
