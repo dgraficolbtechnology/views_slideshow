@@ -68,6 +68,7 @@ function template_preprocess_views_slideshow(&$vars) {
     }
     else {
       $instances[$vss_id] = 1;
+      $vss_id .= '_1';
     }
 
     // Building our default methods.
