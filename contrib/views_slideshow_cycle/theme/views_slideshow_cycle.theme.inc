@@ -70,6 +70,8 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
     $settings['vss_id'] = $vss_id;
   }
 
+  $module_path = drupal_get_path('module', 'views_slideshow_cycle');
+
   // Don't load JavaScript unless libraries module is present.
   if (module_exists('libraries')) {
     // Load jQuery Cycle.
@@ -100,7 +102,6 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
     }
 
     // Load our cycle js.
-    $module_path = drupal_get_path('module', 'views_slideshow_cycle');
     drupal_add_js($module_path . '/js/views_slideshow_cycle.js');
 
     // Load the pause library.
