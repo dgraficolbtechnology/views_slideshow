@@ -8,6 +8,9 @@
 /**
  * Views Slideshow: Theme the main frame wrapper.
  *
+ * @param array $vars
+ *   Theme variables.
+ *
  * @ingroup vss_theme
  */
 function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
@@ -124,7 +127,7 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
     $styles_default = $view->display['default']->display_options['style_options']['views_slideshow_cycle'];
   }
 
-  // Retrive the number of items per frame.
+  // Retrieve the number of items per frame.
   if (isset($styles['items_per_slide']) && $styles['items_per_slide'] > 0) {
     $items_per_slide = $styles['items_per_slide'];
   }
@@ -181,6 +184,9 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
 /**
  * Views Slideshow slideshow rows.
  *
+ * @param array $vars
+ *   Theme variables.
+ *
  * @ingroup vss_theme
  */
 function template_preprocess_views_slideshow_cycle_main_frame_row(&$vars) {
@@ -214,6 +220,9 @@ function template_preprocess_views_slideshow_cycle_main_frame_row(&$vars) {
 /**
  * Implements hook_preprocess_views_slideshow_cycle_main_frame_row_item().
  *
+ * @param array $vars
+ *   Theme variables.
+ *
  * @ingroup vss_theme
  */
 function template_preprocess_views_slideshow_cycle_main_frame_row_item(&$vars) {
@@ -234,6 +243,9 @@ function template_preprocess_views_slideshow_cycle_main_frame_row_item(&$vars) {
 
 /**
  * Implements hook_preprocess_views_slideshow_pager_fields().
+ *
+ * @param array $vars
+ *   Theme variables.
  *
  * @ingroup vss_theme
  */
@@ -275,6 +287,9 @@ function views_slideshow_cycle_preprocess_views_slideshow_pager_fields(&$vars) {
 /**
  * Implements hook_preprocess_views_slideshow_slide_counter().
  *
+ * @param array $vars
+ *   Theme variables.
+ *
  * @ingroup vss_theme
  */
 function views_slideshow_cycle_preprocess_views_slideshow_slide_counter(&$vars) {
@@ -285,7 +300,10 @@ function views_slideshow_cycle_preprocess_views_slideshow_slide_counter(&$vars) 
 }
 
 /**
- * Backwards compatability wrapper.
+ * Backwards comparability wrapper.
+ *
+ * @param array $vars
+ *   Theme variables.
  *
  * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
  *
@@ -298,7 +316,10 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame(&$va
 }
 
 /**
- * Backwards compatability wrapper.
+ * Backwards compatibility wrapper.
+ *
+ * @param array $vars
+ *   Theme variables.
  *
  * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
  *
@@ -311,7 +332,10 @@ function _views_slideshow_cycle_preprocess_views_slideshow_cycle_main_frame_row(
 }
 
 /**
- * Backwards compatability wrapper.
+ * Backwards compatibility wrapper.
+ *
+ * @param array $vars
+ *   Theme variables.
  *
  * @deprecated Removed in 3.5 when the hook_theme() implementation was fixed.
  *
