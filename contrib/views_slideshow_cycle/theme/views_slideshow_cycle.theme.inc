@@ -138,11 +138,14 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
   $vars['items_per_slide'] = $items_per_slide;
 
   $widgets = $vars['options']['widgets'];
-  if (isset($options['top']['views_slideshow_pager']['enabled']) && $options['top']['views_slideshow_pager']['enabled']) {
+  if (isset($widgets['top']['views_slideshow_pager']['enable']) && $widgets['top']['views_slideshow_pager']['enable']) {
     $aria = "aria-labelledby='views_slideshow_pager_field_item_top_${vss_id}_";
   }
-  else {
+  elseif (isset($widgets['bottom']['views_slideshow_pager']['enable']) && $widgets['bottom']['views_slideshow_pager']['enable']) {
     $aria = "aria-labelledby='views_slideshow_pager_field_item_bottom_${vss_id}_";
+  }
+  else {
+    $aria = "";
   }
 
 
@@ -153,14 +156,20 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
   foreach ($rows as $count => $item) {
     $items[] = $item;
     if (count($items) == $items_per_slide || $count == (count($rows) - 1)) {
-      $rendered_rows .= theme(views_theme_functions('views_slideshow_cycle_main_frame_row', $vars['view'], $vars['view']->display[$vars['view']->current_display]), array(
+      $slide = array(
         'vss_id' => $vss_id,
         'items' => $items,
         'count' => $slideshow_count,
         'view' => $vars['view'],
-        'aria' => $aria . $slideshow_count . "'",
         'last_slide' => $last_slide,
-      ));
+      );
+      if ($aria) {
+        $slide['aria'] = $aria . $slideshow_count . "'";
+      }
+      else {
+        $slide['aria'] = '';
+      }
+      $rendered_rows .= theme(views_theme_functions('views_slideshow_cycle_main_frame_row', $vars['view'], $vars['view']->display[$vars['view']->current_display]), $slide);
       $items = array();
       $slideshow_count++;
     }
