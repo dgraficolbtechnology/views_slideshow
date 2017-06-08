@@ -117,12 +117,12 @@ function template_preprocess_views_slideshow_cycle_main_frame(&$vars) {
   // Add the slideshow elements.
   $vars['classes_array'][] = 'views_slideshow_cycle_teaser_section';
 
-  $styles = '';
+  $styles = array();
   if (isset($view->display_handler->display->display_options['style_options']['views_slideshow_cycle'])) {
     $styles = $view->display_handler->display->display_options['style_options']['views_slideshow_cycle'];
   }
 
-  $styles_default = '';
+  $styles_default = array();
   if (isset($view->display['default']->display_options['style_options']['views_slideshow_cycle'])) {
     $styles_default = $view->display['default']->display_options['style_options']['views_slideshow_cycle'];
   }
